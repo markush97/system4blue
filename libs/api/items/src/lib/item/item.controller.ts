@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Item } from '@system4blue/api-interfaces';
+import { CheckResult, Item } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { ItemService } from './item.service';
 
@@ -26,5 +26,10 @@ export class ItemController {
   @Delete(':id')
   async delete(@Param('id') id: UUID4): Promise<void> {
     return this.itemService.delete(id);
+  }
+
+  @Post(':id')
+  async addCheck(@Param('id') id: UUID4, @Body() check: CheckResult): Promise<Item> {
+    return this.itemService.addCheck(id, check);
   }
 }

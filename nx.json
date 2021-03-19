@@ -22,6 +22,7 @@
     "shared-api-interfaces": { "tags": [] },
     "shared-types": { "tags": [] },
     "api-items": { "tags": [] },
-    "api-database": { "tags": [] }
+    "api-database": { "tags": [] },
+    "api-checks": { "tags": [] }
   }
 }

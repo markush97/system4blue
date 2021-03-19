@@ -1,6 +1,7 @@
 import { Module, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ItemEntity, ItemGroupEntity } from '@system4blue/api/items';
+import { CheckResultEntity, CheckTemplateEntity } from '@system4blue/checks';
 @Global()
 @Module({
   controllers: [],
@@ -13,7 +14,7 @@ import { ItemEntity, ItemGroupEntity } from '@system4blue/api/items';
     "username": "system4blue",
     "password": "system4blue",
     "database": "system4blue",
-    entities: [ItemEntity, ItemGroupEntity],
+    entities: [ItemEntity, ItemGroupEntity, CheckResultEntity, CheckTemplateEntity],
     synchronize: true
 
   })]

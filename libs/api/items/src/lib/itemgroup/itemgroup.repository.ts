@@ -5,8 +5,8 @@ import { ItemGroupEntity } from './itemgroup.entity';
 
 @EntityRepository(ItemGroupEntity)
 export class ItemGroupRepository extends AbstractRepository<ItemGroupEntity> {
-  async create(item: ItemGroup): Promise<ItemGroup> {
-    return this.repository.save(this.repository.create(item));
+  async create(itemGroup: ItemGroup): Promise<ItemGroup> {
+    return this.repository.save(this.repository.create(itemGroup));
   }
 
   async findById(id: UUID4): Promise<ItemGroup> {
@@ -17,8 +17,8 @@ export class ItemGroupRepository extends AbstractRepository<ItemGroupEntity> {
     this.repository.delete(id);
   }
 
-  async update(id: UUID4, item: ItemGroup): Promise<void> {
-    this.repository.update({id: id}, item);
+  async update(id: UUID4, itemGroup: ItemGroup): Promise<void> {
+    this.repository.update({id: id}, itemGroup);
   }
 
   async findMany(): Promise<ItemGroup[]> {

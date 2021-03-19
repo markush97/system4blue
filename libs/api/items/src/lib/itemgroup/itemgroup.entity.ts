@@ -34,7 +34,7 @@ export class ItemGroupEntity implements ItemGroup {
   maxAmount?: number;
 
   @OneToMany(
-    type => ItemEntity,
+    () => ItemEntity,
     items => items.itemGroup,
   )
   items?: Item[];

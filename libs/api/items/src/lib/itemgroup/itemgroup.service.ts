@@ -27,6 +27,7 @@ export class ItemGroupService {
   async createSubItem(id: UUID4, item: Item): Promise<ItemGroup> {
     const itemGroup = await this.itemGroupRepository.findById(id);
 
+    item.itemGroup = itemGroup;
     item.description = item.description ?? itemGroup.description;
     item.expiration = item.expiration ??  new Date(new Date().getTime() + itemGroup.defaultLifespan).toISOString();
     item.price = item.price ?? itemGroup.price;

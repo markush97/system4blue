@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/shared/types',
     '<rootDir>/libs/api/items',
     '<rootDir>/libs/api/core/database',
+    '<rootDir>/libs/api/checks',
   ],
 };

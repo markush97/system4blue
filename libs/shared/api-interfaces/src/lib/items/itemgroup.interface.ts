@@ -15,5 +15,4 @@ export interface ItemGroup {
   defaultLifespan?: number;
   price?: number;
 
-
 }
