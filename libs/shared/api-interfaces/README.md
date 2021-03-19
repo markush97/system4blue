@@ -1,3 +1,3 @@
 # api-interfaces
 
-This library was generated with [Nx](https://nx.dev).
+This library contains the api-interfaces for communication between front- and backeend

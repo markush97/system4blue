@@ -218,12 +218,46 @@
           "options": {
             "lintFilePatterns": ["libs/shared/types/**/*.ts"]
           }
+        }
+      }
+    },
+    "api-items": {
+      "root": "libs/api/items",
+      "sourceRoot": "libs/api/items/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/items/**/*.ts"]
+          }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/types"],
+          "outputs": ["coverage/libs/api/items"],
           "options": {
-            "jestConfig": "libs/shared/types/jest.config.js",
+            "jestConfig": "libs/api/items/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-database": {
+      "root": "libs/api/core/database",
+      "sourceRoot": "libs/api/core/database/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/core/database/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/core/database"],
+          "options": {
+            "jestConfig": "libs/api/core/database/jest.config.js",
             "passWithNoTests": true
           }
         }

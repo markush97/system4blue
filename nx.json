@@ -20,6 +20,8 @@
     "web-e2e": { "tags": [], "implicitDependencies": ["web"] },
     "api": { "tags": [] },
     "shared-api-interfaces": { "tags": [] },
-    "shared-types": { "tags": [] }
+    "shared-types": { "tags": [] },
+    "api-items": { "tags": [] },
+    "api-database": { "tags": [] }
   }
 }

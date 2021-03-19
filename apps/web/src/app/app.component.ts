@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@system4blue/shared/api-interfaces';
+import { Message } from '@system4blue/api-interfaces';
 
 @Component({
   selector: 'system4blue-root',
