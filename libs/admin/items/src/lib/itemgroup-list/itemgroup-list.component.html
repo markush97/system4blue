@@ -1,1 +1,13 @@
-<p>itemgroup-list works!</p>
+<h1>Item List</h1>
+<p-table *ngIf="$itemGroups | async as itemGroups" [value]="itemGroups">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let column of columns">{{ column.header }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-itemGroup>
+    <tr>
+      <td *ngFor="let column of columns">{{ itemGroup[column.field] }}</td>
+    </tr>
+  </ng-template>
+</p-table>

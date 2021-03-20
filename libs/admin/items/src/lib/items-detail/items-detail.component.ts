@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Item } from '@system4blue/api-interfaces';
 @Component({
   selector: 'system4blue-items-detail',
   templateUrl: './items-detail.component.html',

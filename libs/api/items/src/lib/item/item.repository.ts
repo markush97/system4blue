@@ -23,6 +23,6 @@ export class ItemRepository extends AbstractRepository<ItemEntity> {
   }
 
   async findMany(): Promise<ItemEntity[]> {
-    return this.repository.find();
+    return this.repository.find({relations: ['itemGroup']});
   }
 }
