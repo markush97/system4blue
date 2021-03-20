@@ -1,5 +1,7 @@
-import {unit, UUID4} from '@system4blue/types';
+import {UUID4} from '@system4blue/types';
 import { CheckTemplate } from '../checks';
+import { Partner } from '../partners/partner.interface';
+import { Unit } from '../unit.enum';
 import { Item } from './item.interface';
 
 export interface ItemGroup {
@@ -10,12 +12,12 @@ export interface ItemGroup {
 
   minAmount?: number;
   maxAmount?: number;
-  unit?: unit;
+  unit?: Unit;
 
   defaultLifespan?: number;
 
-  seller: string;
-  producer: string;
+  seller?: Partner;
+  producer?: Partner;
 
   pricePerUnit?: number;
 

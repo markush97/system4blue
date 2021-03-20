@@ -3,5 +3,6 @@ export enum ItemState {
   BROKEN,
   LEND,
   DISMISSED,
-  RESERVE
+  RESERVE,
+  UNKNOWN
 }

@@ -3,6 +3,7 @@ import { CheckResult } from '../checks';
 import { ItemGroup } from './itemgroup.interface';
 import { StorageContainer } from '../storage/storage-container.interface';
 import { ItemState } from './item-state.enum';
+import { Partner } from '../partners/partner.interface';
 
 export interface Item {
   id: UUID4;
@@ -17,9 +18,9 @@ export interface Item {
   expiration?: string;
 
   producedAt?: string;
-  producer?: string;
+  producer?: Partner;
 
-  seller: string;
+  seller?: Partner;
 
   storageLocation?: StorageContainer;
 

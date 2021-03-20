@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { ItemEntity } from '@system4blue/api/items';
-import { CheckResult, CheckTemplate, Item } from '@system4blue/api-interfaces';
-import { CheckTemplateEntity } from './check-template.entity';
+import { CheckResult, CheckRun, Item } from '@system4blue/api-interfaces';
+import { CheckRunEntity } from './check-run.entity';
 
 
 @Entity()
@@ -9,24 +9,11 @@ export class CheckResultEntity implements CheckResult {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({nullable: true})
-  notice?: string;
-
-  @Column()
-  checker: string;
-
   @Column({ type: 'simple-array', default: '' })
   successfullChecks: string[];
 
   @Column({ type: 'simple-array', default: '' })
   failedChecks: string[];
-
-  @ManyToOne(
-    () => CheckTemplateEntity,
-    template => template.checkResults
-  )
-  @JoinColumn({name: 'template_id'})
-  template: CheckTemplate;
 
   @ManyToOne(
     () => ItemEntity,
@@ -36,13 +23,17 @@ export class CheckResultEntity implements CheckResult {
   @JoinColumn({ name: 'item_id' })
   item: Item;
 
-  @Column({name: 'item_id'})
-  itemId: string;
+  @ManyToOne(() => CheckRunEntity, run => run.checkResults)
+  @JoinColumn({ name: 'checkrun_id' })
+  checkRun: CheckRun;
+
+  @Column({nullable: true})
+  note?: string;
 
   @CreateDateColumn()
-  date: string;
+  createdAt: string;
 
-  @Column({name: 'template_id'})
-  templateId: string;
+  @UpdateDateColumn()
+  updatedAt: string;
 
 }

@@ -29,6 +29,8 @@
     "admin-dashboard": { "tags": [] },
     "admin-items": { "tags": [] },
     "admin-checks": { "tags": [] },
-    "api-storage": { "tags": [] }
+    "api-storage": { "tags": [] },
+    "api-partners": { "tags": [] },
+    "api-members": { "tags": [] }
   }
 }

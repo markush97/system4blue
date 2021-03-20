@@ -1,6 +1,5 @@
-import { CheckResult, CheckTemplate } from "@system4blue/api-interfaces";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CheckResultEntity } from "./check-result.entity";
+import { CheckTemplate } from "@system4blue/api-interfaces";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class CheckTemplateEntity implements CheckTemplate {
@@ -11,17 +10,8 @@ export class CheckTemplateEntity implements CheckTemplate {
   @Column()
   name: string;
 
-  @OneToMany(
-    () => CheckResultEntity,
-    result => result.template
-    )
-  checkResults: CheckResult[];
-
   @Column({type: 'simple-array', default: ' '})
   checks: string[];
-
-  @Column({nullable: true})
-  notice?: string;
 
   @Column({nullable: true})
   description?: string;

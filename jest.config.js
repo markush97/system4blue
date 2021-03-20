@@ -11,5 +11,7 @@ module.exports = {
     '<rootDir>/libs/admin/items',
     '<rootDir>/libs/admin/checks',
     '<rootDir>/libs/api/storage',
+    '<rootDir>/libs/api/partners',
+    '<rootDir>/libs/api/members',
   ],
 };

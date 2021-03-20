@@ -1,4 +1,4 @@
-import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, TreeLevelColumn, OneToMany} from "typeorm";
+import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, OneToMany, UpdateDateColumn, CreateDateColumn} from "typeorm";
 import {Item, StorageContainer, StorageType} from '@system4blue/api-interfaces';
 import {ItemEntity} from '@system4blue/api/items';
 
@@ -23,5 +23,11 @@ export class StorageContainerEntity implements StorageContainer {
 
   @OneToMany(() => ItemEntity, item => item.storageLocation)
   items: Item[];
+
+  @CreateDateColumn()
+  createdAt: string;
+
+  @UpdateDateColumn()
+  updatedAt: string;
 
 }
