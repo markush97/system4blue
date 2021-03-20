@@ -23,6 +23,11 @@
     "shared-types": { "tags": [] },
     "api-items": { "tags": [] },
     "api-database": { "tags": [] },
-    "api-checks": { "tags": [] }
+    "api-checks": { "tags": [] },
+    "admin": { "tags": [] },
+    "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
+    "admin-dashboard": { "tags": [] },
+    "admin-items": { "tags": [] },
+    "admin-checks": { "tags": [] }
   }
 }

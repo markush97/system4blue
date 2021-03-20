@@ -20,12 +20,14 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": true
     },
     "@nrwl/angular:library": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": true
     },
     "@nrwl/angular:component": {
       "style": "scss"
@@ -279,6 +281,193 @@
           "outputs": ["coverage/libs/api/checks"],
           "options": {
             "jestConfig": "libs/api/checks/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin": {
+      "projectType": "application",
+      "root": "apps/admin",
+      "sourceRoot": "apps/admin/src",
+      "prefix": "system4blue",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/admin",
+            "index": "apps/admin/src/index.html",
+            "main": "apps/admin/src/main.ts",
+            "polyfills": "apps/admin/src/polyfills.ts",
+            "tsConfig": "apps/admin/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
+            "styles": ["apps/admin/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/admin/src/environments/environment.ts",
+                  "with": "apps/admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "admin:build",
+            "proxyConfig": "apps/admin/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/admin/src/**/*.ts",
+              "apps/admin/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/admin"],
+          "options": {
+            "jestConfig": "apps/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-e2e": {
+      "root": "apps/admin-e2e",
+      "sourceRoot": "apps/admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/admin-e2e/cypress.json",
+            "tsConfig": "apps/admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/admin-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "admin-dashboard": {
+      "projectType": "library",
+      "root": "libs/admin/dashboard",
+      "sourceRoot": "libs/admin/dashboard/src",
+      "prefix": "system4blue",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/dashboard/src/**/*.ts",
+              "libs/admin/dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/dashboard"],
+          "options": {
+            "jestConfig": "libs/admin/dashboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-items": {
+      "projectType": "library",
+      "root": "libs/admin/items",
+      "sourceRoot": "libs/admin/items/src",
+      "prefix": "system4blue",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/items/src/**/*.ts",
+              "libs/admin/items/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/items"],
+          "options": {
+            "jestConfig": "libs/admin/items/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-checks": {
+      "projectType": "library",
+      "root": "libs/admin/checks",
+      "sourceRoot": "libs/admin/checks/src",
+      "prefix": "system4blue",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/checks/src/**/*.ts",
+              "libs/admin/checks/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/checks"],
+          "options": {
+            "jestConfig": "libs/admin/checks/jest.config.js",
             "passWithNoTests": true
           }
         }
