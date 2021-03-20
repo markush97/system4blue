@@ -1,1 +1,13 @@
-<p>itemgroup-create works!</p>
+<div [formGroup]="form">
+  <div>
+    <input type="text" formControlName="name">
+  </div>
+  <div>
+    <input type="text" formControlName="unit">
+  </div>
+</div>
+<br>
+
+<button type="button" (click)="form.reset()">Löschen</button>
+<button type="button" (click)="close()">Abbrechen</button>
+<button type="button" (click)="submit()">Absenden</button>

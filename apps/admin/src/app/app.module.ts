@@ -7,11 +7,13 @@ import {
   AdminDashboardModule,
   adminDashboardRoutes,
 } from '@system4blue/admin/dashboard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', children: adminDashboardRoutes },

@@ -1,4 +1,11 @@
-<h1>Item List</h1>
+<h1>Itemgroup List</h1>
+
+<p-toolbar styleClass="p-mb-4">
+  <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="showCreate()" ></button>
+  </ng-template>
+
+</p-toolbar>
 <p-table *ngIf="$itemGroups | async as itemGroups" [value]="itemGroups">
   <ng-template pTemplate="header">
     <tr>

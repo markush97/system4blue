@@ -18,4 +18,8 @@ export class ItemslistService {
   public getItemGroups(): Observable<ItemGroup[]> {
     return this.http.get<ItemGroup[]>('/api/itemgroup');
   }
+
+  public createItemGroup(itemGroup: ItemGroup): Observable<ItemGroup> {
+    return this.http.post<ItemGroup>('/api/itemgroup', itemGroup);
+  }
 }

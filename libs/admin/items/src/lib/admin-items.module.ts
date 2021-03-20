@@ -10,17 +10,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ItemslistService } from './itemslist.service';
 import {TableModule} from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ButtonModule} from 'primeng/button';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'groups', component: ItemgroupListComponent },
       { path: 'groups/:id', component: ItemgroupDetailComponent },
       { path: '', pathMatch: 'full', component: ItemsListComponent },
     ]),
     TableModule,
+    DynamicDialogModule,
+    InputTextModule,
+    ToolbarModule,
+    ButtonModule,
   ],
   declarations: [
     ItemsListComponent,
@@ -32,6 +43,6 @@ import {TableModule} from 'primeng/table';
   ],
   providers: [
     ItemslistService
-  ]
+  ],
 })
 export class AdminItemsModule {}
