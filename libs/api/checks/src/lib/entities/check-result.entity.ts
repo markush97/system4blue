@@ -30,7 +30,7 @@ export class CheckResultEntity implements CheckResult {
 
   @ManyToOne(
     () => ItemEntity,
-    item => item.checks,
+    item => item.checkResults,
     {eager: true}
   )
   @JoinColumn({ name: 'item_id' })

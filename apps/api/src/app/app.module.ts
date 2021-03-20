@@ -7,7 +7,7 @@ import { ItemsModule } from '@system4blue/api/items';
 import { ChecksModule } from '@system4blue/checks';
 
 @Module({
-  imports: [ApiDatabaseModule, ItemsModule, ChecksModule],
+  imports: [ApiDatabaseModule, ItemsModule, ChecksModule, StorageModule],
   controllers: [AppController],
   providers: [AppService],
 })

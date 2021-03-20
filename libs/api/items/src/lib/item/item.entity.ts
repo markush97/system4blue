@@ -1,10 +1,12 @@
-import { CheckResult, Item, ItemGroup } from '@system4blue/api-interfaces';
-import { CheckResultEntity } from '@system4blue/checks';
+import { CheckResult, Item, ItemGroup, StorageContainer } from '@system4blue/api-interfaces';
+import { CheckResultEntity } from '@system4blue/api/checks';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ItemGroupEntity } from '../itemgroup/itemgroup.entity';
+import { StorageContainerEntity } from '@system4blue/api/storage';
 
 @Entity()
 export class ItemEntity implements Item {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -20,8 +22,8 @@ export class ItemEntity implements Item {
   @Column({nullable: true})
   expiration?: string;
 
-  @Column({nullable: true})
-  location?: string;
+  @ManyToOne(() => StorageContainerEntity, container => container.items)
+  storageLocation?: StorageContainer;
 
   @ManyToOne(
     () => ItemGroupEntity,
@@ -32,9 +34,9 @@ export class ItemEntity implements Item {
 
   @OneToMany(
     () => CheckResultEntity,
-    check => check.item,
+    result => result.item
   )
-  checks: CheckResult[];
+  checkResults: CheckResult[];
 
   @Column({unique: true})
   externalId: string;

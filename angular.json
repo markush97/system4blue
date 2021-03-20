@@ -477,6 +477,27 @@
           }
         }
       }
+    },
+    "api-storage": {
+      "root": "libs/api/storage",
+      "sourceRoot": "libs/api/storage/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/storage/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/storage"],
+          "options": {
+            "jestConfig": "libs/api/storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

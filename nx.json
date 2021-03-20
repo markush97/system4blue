@@ -28,6 +28,7 @@
     "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
     "admin-dashboard": { "tags": [] },
     "admin-items": { "tags": [] },
-    "admin-checks": { "tags": [] }
+    "admin-checks": { "tags": [] },
+    "api-storage": { "tags": [] }
   }
 }
