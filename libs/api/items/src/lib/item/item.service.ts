@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CheckResult, Item } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { CheckResultService } from 'libs/api/checks/src/lib/check-result.service';
-import { ItemRepository } from './item.repository';
-
+import { ItemRepository } from './persistence/item.repository';
 @Injectable()
 export class ItemService {
   constructor(private readonly itemRepository: ItemRepository, private readonly checkService: CheckResultService) {}

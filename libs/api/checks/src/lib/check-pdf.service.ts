@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CheckTemplate } from '@system4blue/api-interfaces';
+import { CheckResult, CheckTemplate } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 
 import { join } from 'path';
@@ -106,7 +106,7 @@ export class CheckPdfService {
   }
 
   private buildCheckTable(template: CheckTemplate): ITable {
-    const results = template.checkResults;
+    const results:CheckResult[] = [];
     const checkTasks = template.checks;
 
     const tableContent: (Record<string, unknown> | string)[][] = [];

@@ -1,15 +1,13 @@
 export interface QueryParams<T extends Record<string, unknown>> {
   fields?: (keyof T) | (keyof T)[];
-  filter?: string | string[];
-  or?: string | string[];
-  sort?: string[];
+  filter?: FilterParam<T> | FilterParam<T>[];
+  or?: FilterParam<T> | FilterParam<T>[];
+  sort?: SortParam<T> | SortParam<T>[];
   relations?: string | string[];
   limit?: number;
   page?: number;
 }
 
-declare const FilterConditions: 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont';
-
-declare const Filters = `${string}||${FilterConditions}||${string}` as const;
-
-
+type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont';
+type FilterParam<T extends Record<string, unknown>> = `${string & keyof T}||${FilterCondition}||${string}`;
+type SortParam<T extends Record<string, unknown>> = `${string & keyof T}||${'asc' | 'dsc'}`;

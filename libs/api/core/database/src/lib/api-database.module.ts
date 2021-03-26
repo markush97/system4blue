@@ -1,22 +1,46 @@
 import { Module, Global } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ItemEntity, ItemGroupEntity } from '@system4blue/api/items';
-import { CheckResultEntity, CheckTemplateEntity } from '@system4blue/checks';
+import {
+  ItemEntity,
+  ItemGroupEntity,
+  PieceItemEntity,
+  ContainerItemEntity,
+} from '@system4blue/api/items';
+import {
+  CheckResultEntity,
+  CheckRunEntity,
+  CheckTemplateEntity,
+} from '@system4blue/api/checks';
+import { MemberEntity } from '@system4blue/api/members';
+import { PartnerEntity } from '@system4blue/api/partners';
+import { StorageContainerEntity } from '@system4blue/api/storage';
 @Global()
 @Module({
   controllers: [],
   providers: [],
   exports: [],
-  imports: [TypeOrmModule.forRoot({
-    "type": "mariadb",
-    "host": "localhost",
-    "port": 3306,
-    "username": "system4blue",
-    "password": "system4blue",
-    "database": "system4blue",
-    entities: [ItemEntity, ItemGroupEntity, CheckResultEntity, CheckTemplateEntity],
-    synchronize: true
-
-  })]
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mariadb',
+      host: 'localhost',
+      port: 3306,
+      username: 'system4blue',
+      password: 'system4blue',
+      database: 'system4blue',
+      entities: [
+        ItemEntity,
+        ItemGroupEntity,
+        CheckRunEntity,
+        CheckResultEntity,
+        CheckTemplateEntity,
+        PieceItemEntity,
+        ContainerItemEntity,
+        MemberEntity,
+        PartnerEntity,
+        StorageContainerEntity
+      ],
+      synchronize: true,
+    }),
+  ],
 })
 export class ApiDatabaseModule {}

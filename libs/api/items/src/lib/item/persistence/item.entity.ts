@@ -1,10 +1,10 @@
 import { CheckResult, Item, ItemGroup, Partner, StorageContainer } from '@system4blue/api-interfaces';
 import { CheckResultEntity } from '@system4blue/api/checks';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, UpdateDateColumn } from 'typeorm';
-import { ItemGroupEntity } from '../itemgroup/itemgroup.entity';
 import { StorageContainerEntity } from '@system4blue/api/storage';
 import { ItemState } from '@system4blue/api-interfaces';
 import { PartnerEntity } from '@system4blue/api/partners';
+import { ItemGroupEntity } from '../../itemgroup/persistence/itemgroup.entity';
 
 @Entity()
 @TableInheritance({column: { type: 'varchar', name: 'type'}})

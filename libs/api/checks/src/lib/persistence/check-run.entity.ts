@@ -1,15 +1,17 @@
 import { CheckResult, CheckRun, CheckTemplate, Member, Partner } from '@system4blue/api-interfaces';
-import { Column, CreateDateColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { MemberEntity } from '@system4blue/api/members';
 import { CheckTemplateEntity } from './check-template.entity';
 import { CheckResultEntity } from './check-result.entity';
 
+@Entity()
 export class CheckRunEntity implements CheckRun {
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  checker: Partner | Member;
+  @ManyToOne(() => MemberEntity)
+  checker: Member;
 
   @ManyToOne(() => MemberEntity)
   responsible: Member;

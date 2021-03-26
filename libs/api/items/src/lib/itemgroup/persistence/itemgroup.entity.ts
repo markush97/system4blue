@@ -1,7 +1,9 @@
 import { CheckTemplate, Item, ItemGroup, Partner, Unit } from "@system4blue/api-interfaces";
 import { CheckTemplateEntity } from "@system4blue/api/checks";
+import { PartnerEntity } from "@system4blue/api/partners";
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { ItemEntity } from "../item/item.entity";
+import { ItemEntity } from "../../item/persistence/item.entity";
+import { ItemsModule } from "../../items.module";
 
 @Entity()
 export class ItemGroupEntity implements ItemGroup {
@@ -13,7 +15,7 @@ export class ItemGroupEntity implements ItemGroup {
 
   @OneToMany(
     () => ItemEntity,
-    items => items.itemGroup,
+    item => item.itemGroup,
   )
   items?: Item[];
 
@@ -32,16 +34,19 @@ export class ItemGroupEntity implements ItemGroup {
   @Column({nullable: true})
   defaultLifespan?: number;
 
-  @Column({nullable: true})
+  @ManyToOne(
+    () => PartnerEntity
+  )
   seller?: Partner;
 
-  @Column({nullable: true})
+  @ManyToOne(
+    () => PartnerEntity
+  )
   producer?: Partner;
 
   @Column({nullable: true})
   pricePerUnit?: number;
 
-  @Column()
   @ManyToOne(() => CheckTemplateEntity)
   checkTemplate?: CheckTemplate;
 

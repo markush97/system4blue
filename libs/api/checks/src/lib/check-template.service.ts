@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CheckTemplate } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
-import { CheckTemplateRepository } from './entities/check-template.repository';
+import { CheckTemplateRepository } from './persistence/check-template.repository';
 
 @Injectable()
 export class CheckTemplateService {
