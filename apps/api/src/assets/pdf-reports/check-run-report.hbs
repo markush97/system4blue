@@ -1,127 +1,279 @@
 <html>
-  <head>
-    <style>
-      @media print {
-        body {
-          margin: 0;
-          box-shadow: 0;
-        }
-      }
 
-      #footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 100px;
+<head>
+  <style>
+    @media print {
+      body {
+        margin: 0;
+        box-shadow: 0;
       }
-    </style>
-  </head>
-  <body>
-    <h1>Feuerwehr: Test</h1>
+    }
 
-    <table id="">
-      <tbody>
+    body {
+      width: 100%;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      padding: 25px;
+    }
+
+    .title {
+      width: 850px;
+    }
+
+    .headerColumn {
+      float: left;
+      height: 150px;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    #header:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    #header {
+      margin-bottom: 50px;
+    }
+
+    .content {}
+
+    #logo {
+      width: 100px;
+      margin: 10px;
+      float: left;
+    }
+
+    div.runId {
+      display: inline-block;
+      text-align: center;
+      width: 155px;
+    }
+
+    .runId img {
+      width: 125px;
+      height: 125px;
+    }
+
+    .runId .caption {
+      display: block;
+      font-size: 15px;
+    }
+
+    .infoTable {
+      width: 100%;
+    }
+
+    .resultTable {
+      border-collapse: collapse;
+    }
+
+    .resultTable td,
+    .resultTable th {
+      border: 1px solid grey;
+    }
+
+    .resultTable td {
+      text-align: center;
+    }
+
+    .resultTable th {
+      min-width: 35px;
+      height: 50px;
+      vertical-align: bottom;
+      padding-bottom: 5px;
+      border-bottom: 2px solid black;
+    }
+
+    .resultTable .itemName {
+      background-color: lightgray;
+      color: black;
+    }
+
+    .resultTable .itemName span {
+      writing-mode: vertical-lr;
+      text-align: left;
+    }
+
+    .resultTable .task {
+      font-weight: normal;
+      border-right: 2px solid black;
+      padding: 2px 10px;
+    }
+
+    .resultTable th.task {
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    .results {
+      margin-top: 25px;
+      width: 100%;
+
+    }
+
+    .resultTable .summary {
+      border-top: 2px dashed black;
+      background-color: lightgray;
+    }
+
+    .resultTable .summary td {
+      font-weight: bold;
+    }
+
+    .notes {
+      border: 1px solid black;
+      width: 95%;
+      margin-left: 0px;
+      padding: 5px;
+
+    }
+
+    .fail::after {
+      content: '\2613';
+      color: red;
+    }
+
+    .success:after {
+      content: '\2713';
+      color: green;
+    }
+
+    .unknown:after {
+      content: '\003F';
+      color: orange;
+    }
+
+    .signatures {
+      position: absolute;
+      width: 100%;
+      bottom: 65px;
+
+    }
+
+    .signatures table {
+      width: 95%;
+      margin-left: -100px;
+    }
+    .signatures th {
+      width: 150px;
+      text-align: right;
+      vertical-align: middle;
+      padding-right: 25px;
+    }
+
+    .signatures td {
+      text-align: center;
+      width: 200px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    .underline {
+      border-bottom: 2px dashed black;
+      padding-bottom: 50px;
+    }
+
+    #footer {
+      bottom: 15px;
+      position: fixed;
+      font-size: 12px;
+      width: 95%;
+    }
+
+    #footer .column {
+      float: left;
+      width: 33%;
+    }
+
+    #footer:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+
+    <div id="header">
+      <div class="headerColumn">
+        <img id="logo" src="data:image/png;base64,{{logo}}" alt="Logo" />
+      </div>
+      <div class="headerColumn title">
+        <h2>Testbericht:</h2>
+        <h1>{{template.name}}</h1>
+      </div>
+      <div class="runId headerColumn">
+        <img src="{{qr}}" />
+        <span class="caption">{{run.id}}</span>
+      </div>
+    </div>
+
+    <div class="infoBox">
+      <table class="infoTable">
+        <tbody>
+          <tr>
+            <td>Prüfdatum: {{run.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="results">
+      <h2>Ergebnisse:</h2>
+      <table class="resultTable">
         <tr>
-          <td colspan="3" width="151">
-            <p>Pr&uuml;fkarteiblatt:</p>
-          </td>
-          <td colspan="9" width="652">&nbsp;</td>
-          <td colspan="2" width="104">
-            <h1>Blatt Nr.:</h1>
-          </td>
-          <td width="76">&nbsp;</td>
+          <th class="task">Prüfung</th>
+          {{#each run.checkResults}}
+          <th class="itemName"><span>{{this.item.externalId}}</span></th>
+          {{/each}}
+        </tr>
+        {{#resultTable.rows}}
+        <tr>
+          <td class="task">{{task}}</td>
+          {{#taskResults}}
+          <td class="{{this}}"></td>
+          {{/taskResults}}
+        </tr>
+        {{/resultTable.rows}}
+        <tr class="summary">
+            <td>Befund</th>
+          {{#resultTable.sumary}}
+            <td class="{{this}}"></td>
+          {{/resultTable.sumary}}
+        </tr>
+      </table>
+    </div>
+
+    {{#if run.note}}
+    <h3 style="margin-bottom: 0px">Anmerkungen:</h3>
+    <div class="notes">{{run.note}}</div>
+    {{/if}}
+
+    <div class="signatures">
+      <table>
+        <tr>
+          <th rowspan="2">Prüfer:</th>
+          <td class="underline"></td>
+          <th rowspan="2">Verantwortlicher:</th>
+          <td class="underline"></td>
         </tr>
         <tr>
-          <td colspan="2" width="85">
-            <p>Hersteller:</p>
-          </td>
-          <td colspan="2" width="282">&nbsp;</td>
-          <td colspan="2" width="134">
-            <p>Lagerungsort:</p>
-          </td>
-          <td colspan="3" width="214">&nbsp;</td>
-          <td width="70">
-            <p>Lfd. Nr.:</p>
-          </td>
-          <td colspan="5" width="198">&nbsp;</td>
+          <td>{{run.checker.name}}</td>
+          <td>{{run.responsible.name}} ({{run.responsible.externalId}})</td>
         </tr>
-        <tr>
-          <td colspan="2" width="85">
-            <p>Lieferant:</p>
-          </td>
-          <td colspan="2" width="282">&nbsp;</td>
-          <td colspan="2" width="134">
-            <p>Herstellungsjahr:</p>
-          </td>
-          <td colspan="3" width="214">&nbsp;</td>
-          <td width="70">
-            <p>Inv. Nr.:</p>
-          </td>
-          <td colspan="5" width="198">&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="9" width="714">
-            <p>Pr&uuml;fverfahren:</p>
-          </td>
-          <td width="70">&nbsp;</td>
-          <td colspan="5" width="198">&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">&nbsp;</td>
-          <td width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td colspan="2" width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td colspan="2" width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td colspan="2" width="87">
-            <p>Pr&uuml;fung</p>
-          </td>
-          <td colspan="2" width="95">
-            <p>Pr&uuml;fung</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">
-            <p><strong>Pr&uuml;fdatum:</strong></p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="15" width="983">
-            <p><strong>Pr&uuml;fkriterien lt. Bedienungsanleitung</strong></p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">
-            <p><strong>Befund</strong>:</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">
-            <p>Name Ger&auml;tepr&uuml;fer:</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">
-            <p>Unterschrift Ger&auml;tepr&uuml;fer:</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" width="367">
-            <p>Unterschrift Feuerwehrkommandant:</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div id="footer">Test</div>
-  </body>
+      </table>
+    </div>
+
+    <div id="footer">
+      <div class="column" style="text-align: left;">{{template.name}}</div>
+      <div class="column" style="text-align: center;">
+        Bericht erstellt am {{currentDate}}
+      </div>
+      <div class="column" style="text-align: right;">system4blue</div>
+    </div>
+  </div>
+</body>
+
 </html>

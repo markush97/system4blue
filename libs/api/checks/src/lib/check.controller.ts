@@ -97,11 +97,11 @@ export class CheckController {
 
   @Get('runs/:id/pdf')
   async getPDF(@Param('id') id: UUID4, @Res() res): Promise<void> {
-    const buffer = await this.checkPdfService.createCheckRunReportPdf(id, res);
+    const buffer = await this.checkPdfService.createCheckRunReportPdf(id);
 
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=invoice.pdf',
+      //'Content-Disposition': 'attachment; filename=invoice.pdf',
       'Content-Length': buffer.length,
       'Cache-Control': 'no-cache, no-store, must-revalidate',
       Pragma: 'no-cache',

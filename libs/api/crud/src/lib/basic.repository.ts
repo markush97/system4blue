@@ -12,6 +12,10 @@ export abstract class BasicRepository<Entity extends ObjectLiteral> extends Abst
     return this.repository.findOne(id);
   }
 
+  async getByIdForReport(id: UUID4): Promise<Entity> {
+    return this.repository.findOne(id, {relations: ['template', 'checker', 'responsible', 'checkResults', 'checkResults.item']});
+  }
+
   async deleteOneById(id: UUID4): Promise<void> {
     this.repository.delete(id);
   }

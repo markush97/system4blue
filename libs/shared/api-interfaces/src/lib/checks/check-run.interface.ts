@@ -21,4 +21,5 @@ export interface CheckRun {
 
   createdAt: string;
   updatedAt: string;
+
 }

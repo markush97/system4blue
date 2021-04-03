@@ -24,4 +24,8 @@ export class CheckRunService {
   async getById(id: UUID4): Promise<CheckRun> {
     return this.checkRunRepository.getOneById(id);
   }
+
+  async getByIdForReport(id: UUID4): Promise<CheckRun> {
+    return this.checkRunRepository.getByIdForReport(id);
+  }
 }
