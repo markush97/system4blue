@@ -32,6 +32,8 @@
     "api-storage": { "tags": [] },
     "api-partners": { "tags": [] },
     "api-members": { "tags": [] },
-    "api-crud": { "tags": [] }
+    "api-crud": { "tags": [] },
+    "admin-members": { "tags": [] },
+    "admin-partners": { "tags": [] }
   }
 }

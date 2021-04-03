@@ -31,7 +31,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
               (module) => module.AdminChecksModule
             ),
         },
-        {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        {
+          path: 'members',
+          loadChildren: () =>
+            import('@system4blue/admin/members').then(
+              (module) => module.AdminMembersModule
+            ),
+        },
+        {
+          path: 'partners',
+          loadChildren: () =>
+            import('@system4blue/admin/partners').then(
+              (module) => module.AdminPartnersModule
+            ),
+        },
       ],
       { initialNavigation: 'enabled' }
     ),

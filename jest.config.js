@@ -14,5 +14,7 @@ module.exports = {
     '<rootDir>/libs/api/partners',
     '<rootDir>/libs/api/members',
     '<rootDir>/libs/api/crud',
+    '<rootDir>/libs/admin/members',
+    '<rootDir>/libs/admin/partners',
   ],
 };
