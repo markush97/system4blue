@@ -540,6 +540,27 @@
           }
         }
       }
+    },
+    "api-crud": {
+      "root": "libs/api/crud",
+      "sourceRoot": "libs/api/crud/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/crud/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/crud"],
+          "options": {
+            "jestConfig": "libs/api/crud/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

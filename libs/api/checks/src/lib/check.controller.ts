@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common';
-import { CheckResult, CheckTemplate } from '@system4blue/api-interfaces';
+import { Body, Controller, Delete, Get, Param, Post, Query, Res } from '@nestjs/common';
+import { CheckResult, CheckTemplate, PaginationResult, QueryParams } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { CheckPdfService } from './check-pdf.service';
 import { CheckResultService } from './check-result.service';
@@ -14,8 +14,8 @@ export class CheckController {
   }
 
   @Get()
-  async getCheckResultList(): Promise<CheckResult[]> {
-    return this.checkResultService.getMany();
+  async getMany(@Query() queryParams: QueryParams<CheckResult>): Promise<PaginationResult<CheckResult>> {
+    return this.checkResultService.getMany(queryParams);
   }
 
   @Post()
@@ -34,8 +34,8 @@ export class CheckController {
   }
 
   @Get('template')
-  async getCheckTemplatesList(): Promise<CheckTemplate[]> {
-    return this.checkTemplateService.getMany();
+  async getManyTemplates(@Query() queryParams: QueryParams<CheckTemplate>): Promise<PaginationResult<CheckTemplate>> {
+    return this.checkTemplateService.getMany(queryParams);
   }
 
   @Post('template')

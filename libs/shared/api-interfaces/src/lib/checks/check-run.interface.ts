@@ -7,7 +7,7 @@ import { CheckTemplate } from "./check-template.interface";
 export interface CheckRun {
   id: UUID4;
 
-  checker: Partner | Member;
+  checker: Member;
 
   responsible: Member;
 

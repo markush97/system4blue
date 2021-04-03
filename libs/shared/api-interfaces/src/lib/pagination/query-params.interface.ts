@@ -1,13 +1,19 @@
-export interface QueryParams<T extends Record<string, unknown>> {
-  fields?: (keyof T) | (keyof T)[];
-  filter?: FilterParam<T> | FilterParam<T>[];
-  or?: FilterParam<T> | FilterParam<T>[];
-  sort?: SortParam<T> | SortParam<T>[];
-  relations?: string | string[];
+/* eslint-disable @typescript-eslint/ban-types */
+export interface QueryParams<T extends object> {
+  //fields?: (keyof T)[];
+  //filter?: FilterParam<T>[];
+  //or?: FilterParam<T>[];
+  //order?: orderParam<T>[];
+  //relations?: string[];
+
+  fields?: string;
+  filter?: string;
+  order?: string;
+  relations?: string;
   limit?: number;
   page?: number;
 }
 
-type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont';
-type FilterParam<T extends Record<string, unknown>> = `${string & keyof T}||${FilterCondition}||${string}`;
-type SortParam<T extends Record<string, unknown>> = `${string & keyof T}||${'asc' | 'dsc'}`;
+export type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont';
+export type FilterParam<T extends object> = `${string & keyof T}||${FilterCondition}||${string}`;
+export type OrderParam<T extends object> = `${string & keyof T}||${'ASC' | 'DESC'}`;

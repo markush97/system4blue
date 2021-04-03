@@ -11,7 +11,7 @@ export class ItemGroupEntity implements ItemGroup {
   id: string;
 
   @Column({type: 'enum', enum: Unit, default: Unit.PIECE})
-  unit: Unit;
+  unit?: Unit;
 
   @OneToMany(
     () => ItemEntity,

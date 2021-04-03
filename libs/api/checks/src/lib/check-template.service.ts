@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CheckTemplate } from '@system4blue/api-interfaces';
+import { CheckTemplate, PaginationResult, QueryParams } from '@system4blue/api-interfaces';
+import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { CheckTemplateRepository } from './persistence/check-template.repository';
 
@@ -8,19 +9,19 @@ export class CheckTemplateService {
 
   constructor(private readonly checkTemplateRepository: CheckTemplateRepository) {}
 
-  async getMany(): Promise<CheckTemplate[]> {
-    return this.checkTemplateRepository.findMany();
+  async getMany(queryParams: QueryParams<CheckTemplate>): Promise<PaginationResult<CheckTemplate>> {
+    return this.checkTemplateRepository.getMany(parseFindManyParams(queryParams));
   }
 
-  async create(check: CheckTemplate): Promise<CheckTemplate> {
-    return this.checkTemplateRepository.create(check);
+  async create(template: CheckTemplate): Promise<CheckTemplate> {
+    return this.checkTemplateRepository.create(template);
   }
 
   async delete(id: UUID4): Promise<void> {
-    return this.checkTemplateRepository.deleteById(id);
+    return this.checkTemplateRepository.deleteOneById(id);
   }
 
   async getById(id: UUID4): Promise<CheckTemplate> {
-    return this.checkTemplateRepository.findById(id);
+    return this.checkTemplateRepository.getOneById(id);
   }
 }

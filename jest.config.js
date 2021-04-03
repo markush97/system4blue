@@ -13,5 +13,6 @@ module.exports = {
     '<rootDir>/libs/api/storage',
     '<rootDir>/libs/api/partners',
     '<rootDir>/libs/api/members',
+    '<rootDir>/libs/api/crud',
   ],
 };

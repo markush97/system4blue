@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { CheckResult, Item } from '@system4blue/api-interfaces';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { CheckResult, Item, PaginationResult, QueryParams } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { ItemService } from './item.service';
 
@@ -14,8 +14,8 @@ export class ItemController {
   }
 
   @Get()
-  async list(): Promise<Item[]> {
-    return this.itemService.getMany();
+  async getMany(@Query() queryParams: QueryParams<Item>): Promise<PaginationResult<Item>> {
+    return this.itemService.getMany(queryParams);
   }
 
   @Post()

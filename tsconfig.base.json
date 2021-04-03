@@ -27,7 +27,8 @@
       "@system4blue/admin/checks": ["libs/admin/checks/src/index.ts"],
       "@system4blue/api/storage": ["libs/api/storage/src/index.ts"],
       "@system4blue/api/partners": ["libs/api/partners/src/index.ts"],
-      "@system4blue/api/members": ["libs/api/members/src/index.ts"]
+      "@system4blue/api/members": ["libs/api/members/src/index.ts"],
+      "@system4blue/api/crud": ["libs/api/crud/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

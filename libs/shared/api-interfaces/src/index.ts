@@ -4,3 +4,4 @@ export * from './lib/storage';
 export * from './lib/partners';
 export * from './lib/unit.enum';
 export * from './lib/members';
+export * from './lib/pagination';
