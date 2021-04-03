@@ -1,39 +1,89 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "system4blue",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   },
   "projects": {
-    "web": { "tags": [] },
-    "web-e2e": { "tags": [], "implicitDependencies": ["web"] },
-    "api": { "tags": [] },
-    "shared-api-interfaces": { "tags": [] },
-    "shared-types": { "tags": [] },
-    "api-items": { "tags": [] },
-    "api-database": { "tags": [] },
-    "api-checks": { "tags": [] },
-    "admin": { "tags": [] },
-    "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
-    "admin-dashboard": { "tags": [] },
-    "admin-items": { "tags": [] },
-    "admin-checks": { "tags": [] },
-    "api-storage": { "tags": [] },
-    "api-partners": { "tags": [] },
-    "api-members": { "tags": [] },
-    "api-crud": { "tags": [] },
-    "admin-members": { "tags": [] },
-    "admin-partners": { "tags": [] }
+    "web": {
+      "tags": []
+    },
+    "web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web"]
+    },
+    "api": {
+      "tags": []
+    },
+    "shared-api-interfaces": {
+      "tags": []
+    },
+    "shared-types": {
+      "tags": []
+    },
+    "api-items": {
+      "tags": []
+    },
+    "api-database": {
+      "tags": []
+    },
+    "api-checks": {
+      "tags": []
+    },
+    "admin": {
+      "tags": []
+    },
+    "admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["admin"]
+    },
+    "admin-dashboard": {
+      "tags": []
+    },
+    "admin-items": {
+      "tags": []
+    },
+    "admin-checks": {
+      "tags": []
+    },
+    "api-storage": {
+      "tags": []
+    },
+    "api-partners": {
+      "tags": []
+    },
+    "api-members": {
+      "tags": []
+    },
+    "api-crud": {
+      "tags": []
+    },
+    "admin-members": {
+      "tags": []
+    },
+    "admin-partners": {
+      "tags": []
+    },
+    "components-entity-table": {
+      "tags": []
+    }
   }
 }

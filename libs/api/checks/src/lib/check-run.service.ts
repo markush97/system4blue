@@ -4,13 +4,15 @@ import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { CheckRunRepository } from './persistence/check-run.repository';
 
+const searchAbleFields: (string & keyof CheckRun)[] = ['date', 'note'];
+
 @Injectable()
 export class CheckRunService {
 
   constructor(private readonly checkRunRepository: CheckRunRepository) {}
 
   async getMany(queryParams: QueryParams<CheckRun>): Promise<PaginationResult<CheckRun>> {
-    return this.checkRunRepository.getMany(parseFindManyParams(queryParams));
+    return this.checkRunRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(run: CheckRun): Promise<CheckRun> {

@@ -1,0 +1,145 @@
+<p-table
+  [columns]="columns"
+  [value]="entities"
+  [lazy]="true"
+  (onLazyLoad)="loadEntities($event)"
+  [paginator]="entities.length > 0"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading"
+  [showCurrentPageReport]="entities.length > 0"
+  [rowHover]="true"
+  currentPageReportTemplate="Zeige {first} bis {last} von {totalRecords} Einträgen"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  styleClass="entity-table"
+  dataKey="id"
+  [exportFilename]="tableDefinition.entityName"
+  #et
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between titlebox">
+      {{ tableDefinition.title }}
+
+      <span class="button-group-right">
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-file-o"
+          (click)="et.exportCSV()"
+          class="p-mr-2"
+          pTooltip="Exportieren"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Neu"
+          icon="pi pi-plus"
+          class="p-button-success p-mr-2"
+          (click)="addEntity()"
+        ></button>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            #searchField
+            pInputText
+            type="text"
+            placeholder="Suchen..."
+            (input)="filterGlobal(searchField.value)"
+          />
+        </span>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <ng-container *ngFor="let column of columns">
+        <th *ngIf="column.sortAble" [pSortableColumn]="column.field">
+          {{ column.label }}<p-sortIcon [field]="column.field"></p-sortIcon>
+        </th>
+        <th *ngIf="!column.sortAble">{{ column.label }}</th>
+      </ng-container>
+      <th></th>
+    </tr>
+    <tr>
+      <th *ngFor="let column of columns">
+        <ng-container [ngSwitch]="column.type">
+          <p-columnFilter
+            *ngSwitchCase="'date'"
+            type="date"
+            [field]="column.field"
+          ></p-columnFilter>
+          <p-columnFilter
+            *ngSwitchCase="'boolean'"
+            type="boolean"
+            [field]="column.field"
+          ></p-columnFilter>
+          <p-columnFilter
+            *ngSwitchCase="'numeric'"
+            type="numeric"
+            [field]="column.field"
+          ></p-columnFilter>
+          <p-columnFilter
+            *ngSwitchDefault
+            type="text"
+            [field]="column.field"
+          ></p-columnFilter>
+        </ng-container>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-entity>
+    <tr class="entity">
+      <ng-container *ngFor="let column of columns">
+        <ng-container [ngSwitch]="column.type">
+          <td *ngSwitchCase="'phone'" class="phone">
+            <a href="tel:{{ entity[column.field] }}"
+              ><i class="pi pi-phone"></i> {{ entity[column.field] }}</a
+            >
+          </td>
+          <td *ngSwitchCase="'email'" class="email">
+            <a href="mailto:{{ entity[column.field] }}"
+              ><i class="pi pi-envelope"></i> {{ entity[column.field] }}</a
+            >
+          </td>
+          <td *ngSwitchCase="'link'" class="link">
+            <a href="{{ entity[column.field] }}" target="_blank"
+              ><i class="pi pi-globe"></i> {{ entity[column.field] }}</a
+            >
+          </td>
+          <td *ngSwitchDefault>{{ entity[column.field] }}</td>
+        </ng-container>
+      </ng-container>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editEntity(entity.id)"
+          pTooltip="{{tableDefinition.entityName}} bearbeiten"
+          tooltipPosition="bottom"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteEntity(entity.id)"
+          pTooltip="{{tableDefinition.entityName}} löschen"
+          tooltipPosition="bottom"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="entities.length">Keine Einträge gefunden</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

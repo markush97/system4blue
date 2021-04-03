@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-export interface QueryParams<T extends object> {
+export interface QueryParams<T extends object = object> {
   //fields?: (keyof T)[];
   //filter?: FilterParam<T>[];
   //or?: FilterParam<T>[];
@@ -7,13 +7,14 @@ export interface QueryParams<T extends object> {
   //relations?: string[];
 
   fields?: string;
-  filter?: string;
+  filters?: string;
   order?: string;
   relations?: string;
   limit?: number;
   page?: number;
+  search?: string;
 }
 
-export type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont';
+export type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont' | 'ncont';
 export type FilterParam<T extends object> = `${string & keyof T}||${FilterCondition}||${string}`;
 export type OrderParam<T extends object> = `${string & keyof T}||${'ASC' | 'DESC'}`;

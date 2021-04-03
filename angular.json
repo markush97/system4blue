@@ -611,6 +611,23 @@
           }
         }
       }
+    },
+    "components-entity-table": {
+      "projectType": "library",
+      "root": "libs/components/entity-table",
+      "sourceRoot": "libs/components/entity-table/src",
+      "prefix": "s4b",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/components/entity-table/src/**/*.ts",
+              "libs/components/entity-table/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

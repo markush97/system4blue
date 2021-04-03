@@ -8,12 +8,15 @@ import {
   adminDashboardRoutes,
 } from '@system4blue/admin/dashboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ToastModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', children: adminDashboardRoutes },
@@ -46,12 +49,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
               (module) => module.AdminPartnersModule
             ),
         },
+        {path: '*', redirectTo: 'dashboard', pathMatch: 'full'}
       ],
       { initialNavigation: 'enabled' }
     ),
     AdminDashboardModule,
   ],
-  providers: [],
+  providers: [MessageService,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

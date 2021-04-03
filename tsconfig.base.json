@@ -31,7 +31,7 @@
       "@system4blue/api/crud": ["libs/api/crud/src/index.ts"],
       "@system4blue/admin/members": ["libs/admin/members/src/index.ts"],
       "@system4blue/admin/partners": ["libs/admin/partners/src/index.ts"],
-      "@system4blue/components": ["libs/frontend/crud/src/index.ts"]
+      "@system4blue/components": ["libs/components/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

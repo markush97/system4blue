@@ -4,12 +4,14 @@ import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { MemberRepository } from './persistence/members.repository';
 
+const searchAbleFields: (string & keyof Member)[] = ['email', 'externalId', 'name'];
+
 @Injectable()
 export class MembersService {
   constructor(private readonly memberRepository: MemberRepository) {}
 
   async getMany(queryParams: QueryParams<Member>): Promise<PaginationResult<Member>> {
-    return this.memberRepository.getMany(parseFindManyParams(queryParams));
+    return this.memberRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(partner: Member): Promise<Member> {

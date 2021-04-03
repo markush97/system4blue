@@ -5,12 +5,14 @@ import { UUID4 } from '@system4blue/types';
 import { ItemService } from '../item/item.service';
 import { ItemGroupRepository } from './persistence/itemgroup.repository';
 
+const searchAbleFields: (string & keyof ItemGroup)[] = ['description', 'name'];
+
 @Injectable()
 export class ItemGroupService {
   constructor(private readonly itemGroupRepository: ItemGroupRepository, private readonly itemService: ItemService) {}
 
   async getMany(queryParams: QueryParams<ItemGroup>): Promise<PaginationResult<ItemGroup>> {
-    return this.itemGroupRepository.getMany(parseFindManyParams(queryParams));
+    return this.itemGroupRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(itemGroup: ItemGroup): Promise<ItemGroup> {

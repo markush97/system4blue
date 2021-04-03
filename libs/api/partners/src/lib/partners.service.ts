@@ -4,12 +4,14 @@ import { PartnerRepository } from './persistence/partner.repository';
 import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 
+const searchAbleFields: (string & keyof Partner)[] = ['contactEmail', 'contactName', 'name', 'webpage', ];
+
 @Injectable()
 export class PartnersService {
   constructor(private readonly partnerRepository: PartnerRepository) {}
 
   async getMany(queryParams: QueryParams<Partner>): Promise<PaginationResult<Partner>> {
-    return this.partnerRepository.getMany(parseFindManyParams(queryParams));
+    return this.partnerRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(partner: Partner): Promise<Partner> {

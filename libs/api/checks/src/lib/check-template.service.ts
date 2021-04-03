@@ -4,13 +4,15 @@ import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { CheckTemplateRepository } from './persistence/check-template.repository';
 
+const searchAbleFields: (string & keyof CheckTemplate)[] = ['name']
+
 @Injectable()
 export class CheckTemplateService {
 
   constructor(private readonly checkTemplateRepository: CheckTemplateRepository) {}
 
   async getMany(queryParams: QueryParams<CheckTemplate>): Promise<PaginationResult<CheckTemplate>> {
-    return this.checkTemplateRepository.getMany(parseFindManyParams(queryParams));
+    return this.checkTemplateRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(template: CheckTemplate): Promise<CheckTemplate> {

@@ -14,7 +14,8 @@ import {
 } from 'typeorm';
 
 export function parseFindManyParams<Entity extends ObjectLiteral>(
-  queryParams: QueryParams<Entity>
+  queryParams: QueryParams<Entity>,
+  searchableFields: (string & keyof Entity)[]
 ): FindManyOptions<Entity> {
 
   const filter: FindManyOptions<Entity> = {
@@ -23,7 +24,7 @@ export function parseFindManyParams<Entity extends ObjectLiteral>(
     relations: queryParams.relations?.split(','),
     skip: queryParams.page * queryParams.limit,
     take: queryParams.limit,
-    where: parseFilterParams(queryParams.filter?.split(',')),
+    where: parseSearchParam(searchableFields, queryParams.search, parseFilterParams(queryParams.filters?.split(','))),
   };
 
   return filter;
@@ -32,7 +33,7 @@ export function parseFindManyParams<Entity extends ObjectLiteral>(
 function parseorderParams<Entity extends ObjectLiteral>(
   orderParams
 ): { [P in keyof Entity]?: 'ASC' | 'DESC' } {
-  const order: Record<keyof Entity, 'ASC' | 'DESC'> = {};
+  const order = {};
 
   if (orderParams === undefined) {
     return undefined;
@@ -46,8 +47,22 @@ function parseorderParams<Entity extends ObjectLiteral>(
   return order;
 }
 
+function parseSearchParam<Entity extends ObjectLiteral>(searchableFields: (string & keyof Entity)[], searchString?: string, filters?: FilterQuery<Entity>): FilterQuery<Entity> {
+  if (searchString === undefined || '') {
+    return filters;
+  }
+
+  const filter = [];
+
+  searchableFields.forEach(fieldKey => {
+    filter.push({[fieldKey]: ILike(`%${searchString}%`), ...filters});
+  });
+
+  return filter;
+}
+
 function parseFilterParams<Entity extends ObjectLiteral>(
-  filterParams
+  filterParams: string[]
 ): FilterQuery<Entity> {
   const filter = {};
 
@@ -85,6 +100,10 @@ function parseFilterParams<Entity extends ObjectLiteral>(
 
       case 'lt':
         filter[key] = LessThan(compareValue);
+        break;
+
+      case 'ncont':
+        filter[key] =  Not(ILike(`%${compareValue}%`));
         break;
 
       default:

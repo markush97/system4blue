@@ -4,13 +4,16 @@ import { CheckResultService } from '@system4blue/api/checks';
 import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { ItemRepository } from './persistence/item.repository';
+
+const searchAbleFields: (string & keyof Item)[] = ['description', 'externalId', 'name'];
+
 @Injectable()
 export class ItemService {
   constructor(private readonly itemRepository: ItemRepository, private readonly checkService: CheckResultService) {}
 
 
   async getMany(queryParams: QueryParams<Item>): Promise<PaginationResult<Item>> {
-    return this.itemRepository.getMany(parseFindManyParams(queryParams));
+    return this.itemRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(item: Item): Promise<Item> {

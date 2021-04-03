@@ -4,12 +4,14 @@ import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { StorageContainerRepository } from './persistence/storage-container.repository';
 
+const searchAbleFields: (string & keyof StorageContainer)[] = ['name'];
+
 @Injectable()
 export class StorageService {
   constructor(private readonly storageRepository: StorageContainerRepository) {}
 
   async getMany(queryParams: QueryParams<StorageContainer>): Promise<PaginationResult<StorageContainer>> {
-    return this.storageRepository.getMany(parseFindManyParams(queryParams));
+    return this.storageRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
   async create(container: StorageContainer): Promise<StorageContainer> {
