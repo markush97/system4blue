@@ -12,8 +12,12 @@ export class StorageService {
     return this.storageRepository.getMany(parseFindManyParams(queryParams));
   }
 
-  async create(partner: StorageContainer): Promise<StorageContainer> {
-    return this.storageRepository.create(partner);
+  async create(container: StorageContainer): Promise<StorageContainer> {
+    return this.storageRepository.create(container);
+  }
+
+  async addContainer(container: StorageContainer, partentId: UUID4): Promise<StorageContainer>  {
+    return this.storageRepository.addContainer(container, partentId);
   }
 
   async delete(id: UUID4): Promise<void> {

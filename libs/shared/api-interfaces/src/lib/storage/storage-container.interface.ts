@@ -4,6 +4,7 @@ import { StorageType } from "./storage-types.enum";
 
 export interface StorageContainer {
   id: UUID4;
+  name: string;
   type: StorageType;
   description?: string;
   subContainers: StorageContainer[];

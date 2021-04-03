@@ -3,7 +3,6 @@ import { CheckTemplateEntity } from "@system4blue/api/checks";
 import { PartnerEntity } from "@system4blue/api/partners";
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ItemEntity } from "../../item/persistence/item.entity";
-import { ItemsModule } from "../../items.module";
 
 @Entity()
 export class ItemGroupEntity implements ItemGroup {

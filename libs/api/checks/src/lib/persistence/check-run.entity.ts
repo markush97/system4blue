@@ -16,7 +16,7 @@ export class CheckRunEntity implements CheckRun {
   @ManyToOne(() => MemberEntity)
   responsible: Member;
 
-  @Column({type: 'date', update: false})
+  @Column({type: 'date'})
   date: string;
 
   @ManyToOne(() => CheckTemplateEntity)

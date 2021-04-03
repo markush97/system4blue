@@ -30,4 +30,7 @@ export class StorageContainerEntity implements StorageContainer {
   @UpdateDateColumn()
   updatedAt: string;
 
+  @Column()
+  name: string;
+
 }

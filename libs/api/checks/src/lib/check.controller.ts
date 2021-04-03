@@ -88,7 +88,14 @@ export class CheckController {
     return this.checkRunService.getMany(queryParams);
   }
 
-  @Get('/runs/:id/pdf')
+  @Post('runs')
+  async createRun(
+    @Body() checkRun: CheckRun
+  ): Promise<CheckRun> {
+    return this.checkRunService.create(checkRun);
+  }
+
+  @Get('runs/:id/pdf')
   async getPDF(@Param('id') id: UUID4, @Res() res): Promise<void> {
     const buffer = await this.checkPdfService.createCheckRunReportPdf(id, res);
 
