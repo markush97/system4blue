@@ -19,6 +19,7 @@ export class AdminMembersListComponent {
       {field: 'lastName', label: 'Nachname', sortAble: true, type: 'text'},
       {field: 'memberId', label: 'Mitgliedernummer', sortAble: true, type: 'numeric'},
       {field: 'email', label:'Email', sortAble: false, type: 'email'},
+      {field: 'privateEmail', label:'Private Email', sortAble: false, type: 'email'},
       {field: 'phone', label:'Telefon', sortAble: false, type: 'phone'}
     ]
   };

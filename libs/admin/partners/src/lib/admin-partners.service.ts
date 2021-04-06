@@ -10,8 +10,10 @@ import {
   composeHttpPagingParams,
 } from '@system4blue/components';
 import { UUID4 } from '@system4blue/types';
-import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminPartnersFormComponent } from './admin-partners-form/admin-partners-form.component';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +21,12 @@ import { AdminPartnersFormComponent } from './admin-partners-form/admin-partners
 export class AdminPartnersService implements EntityTableDataSource {
   private readonly PATH = '/api/partners';
 
+  private ref!: DynamicDialogRef;
+
   constructor(
     private readonly http: HttpClient,
-    private readonly dialogService: DialogService
+    private readonly dialogService: DialogService,
+    private readonly messageService: MessageService
   ) {}
 
   async loadEntites(
@@ -47,13 +52,25 @@ export class AdminPartnersService implements EntityTableDataSource {
   }
 
   async deleteEntity(id: string): Promise<void> {
-    this.http.delete(`${this.PATH}/${id}`).subscribe();
+    this.http
+      .delete(`${this.PATH}/${id}`)
+      .pipe(
+        tap(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Erfolg!',
+            detail: `Partner wurde gelöscht`,
+            life: 3000,
+          });
+        })
+      )
+      .subscribe();
   }
 
   async editEntity(id: string) {
     const partner = await this.getPartner(id);
 
-    const ref = this.dialogService.open(AdminPartnersFormComponent, {
+    this.ref = this.dialogService.open(AdminPartnersFormComponent, {
       header: 'Partner Information',
       dismissableMask: true,
       width: '55%',
@@ -69,7 +86,7 @@ export class AdminPartnersService implements EntityTableDataSource {
   }
 
   addEntity(): void {
-    const ref = this.dialogService.open(AdminPartnersFormComponent, {
+    this.ref = this.dialogService.open(AdminPartnersFormComponent, {
       header: 'Neuen Partner anlegen',
       width: '55%',
       dismissableMask: true,
@@ -78,13 +95,37 @@ export class AdminPartnersService implements EntityTableDataSource {
   }
 
   async createPartner(partner: Partner): Promise<Partner> {
-    return this.http.post<Partner>(this.PATH, partner).toPromise();
+    return this.http
+      .post<Partner>(this.PATH, partner)
+      .pipe(
+        tap((partner: Partner) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Erfolg!',
+            detail: `${partner.name} wurde angelegt`,
+            life: 3000,
+          });
+          this.ref.close();
+        })
+      )
+      .toPromise();
   }
 
-  async updatePartner(partnerId: UUID4, partner: Partner): Promise<Partner> {
-    return this.http
-      .put<Partner>(`${this.PATH}/${partnerId}`, partner)
-      .toPromise();
+  async updatePartner(partnerId: UUID4, partner: Partner) {
+    this.http
+      .put(`${this.PATH}/${partnerId}`, partner)
+      .pipe(
+        tap(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Erfolg!',
+            detail: `${partner.name} wurde aktualisiert`,
+            life: 3000,
+          });
+          this.ref.close();
+        })
+      )
+      .subscribe();
   }
 
   async getPartner(partnerId: UUID4): Promise<Partner> {

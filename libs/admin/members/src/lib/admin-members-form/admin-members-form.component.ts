@@ -40,7 +40,8 @@ export class AdminMembersFormComponent implements OnInit {
       zip: [this.member?.zip],
       country: [this.member?.country],
       phone: [this.member?.phone],
-      email: [this.member?.email, Validators.email],
+      email: [this.member?.email, [Validators.required, Validators.email]],
+      privateEmail: [this.member?.privateEmail, Validators.email],
       memberId: [this.member?.memberId],
     });
   }

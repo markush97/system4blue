@@ -14,6 +14,7 @@ export interface Member {
 
   email: string;
   phone?: string;
+  privateEmail?: string;
 
   createdAt: string;
   updatedAt: string;

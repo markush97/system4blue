@@ -13,6 +13,9 @@ export class MemberEntity implements Member {
   @Column()
   lastName: string;
 
+  @Column({nullable: true})
+  privateEmail?: string;
+
   @Column({unique: true})
   memberId: string;
 

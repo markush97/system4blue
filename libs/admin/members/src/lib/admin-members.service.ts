@@ -10,8 +10,10 @@ import {
   EntityTableDataSource,
 } from '@system4blue/components';
 import { UUID4 } from '@system4blue/types';
-import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminMembersFormComponent } from './admin-members-form/admin-members-form.component';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +21,12 @@ import { AdminMembersFormComponent } from './admin-members-form/admin-members-fo
 export class AdminMembersService implements EntityTableDataSource {
   private readonly PATH = '/api/members';
 
+  private ref!:DynamicDialogRef;
+
   constructor(
     private readonly http: HttpClient,
-    private readonly dialogService: DialogService
+    private readonly dialogService: DialogService,
+    private readonly messageService: MessageService
   ) {}
   loadEntites(
     searchString?: string,
@@ -51,7 +56,7 @@ export class AdminMembersService implements EntityTableDataSource {
   async editEntity(id: string) {
     const member = await this.getMember(id);
 
-    const ref = this.dialogService.open(AdminMembersFormComponent, {
+    this.ref = this.dialogService.open(AdminMembersFormComponent, {
       header: 'Mitglied Information',
       width: '55%',
       closeOnEscape: true,
@@ -67,7 +72,7 @@ export class AdminMembersService implements EntityTableDataSource {
   }
 
   addEntity(): void {
-    const ref = this.dialogService.open(AdminMembersFormComponent, {
+    this.ref = this.dialogService.open(AdminMembersFormComponent, {
       header: 'Neues Mitglied anlegen',
       width: '55%',
       dismissableMask: true,
@@ -76,11 +81,31 @@ export class AdminMembersService implements EntityTableDataSource {
   }
 
   async createMember(member: Member): Promise<Member> {
-    return this.http.post<Member>(this.PATH, member).toPromise();
+    return this.http.post<Member>(this.PATH, member)      .pipe(
+      tap((member: Member) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Erfolg!',
+          detail: `${member.firstName} ${member.lastName} wurde angelegt`,
+          life: 3000,
+        });
+        this.ref.close();
+      })
+    ).toPromise();
   }
 
-  async updateMember(memberId: UUID4, member: Member): Promise<Member> {
-    return this.http.put<Member>(`${this.PATH}/${memberId}`, member).toPromise();
+  async updateMember(memberId: UUID4, member: Member) {
+    this.http.put<Member>(`${this.PATH}/${memberId}`, member).pipe(
+      tap(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Erfolg!',
+          detail: `${member.firstName} ${member.lastName} wurde aktualisiert`,
+          life: 3000,
+        });
+        this.ref.close();
+      })
+    ).subscribe();
   }
 
   async getMember(memberId: UUID4): Promise<Member> {
