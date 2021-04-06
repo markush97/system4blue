@@ -59,6 +59,7 @@
     "hbs": "^4.1.1",
     "mariadb": "^2.5.3",
     "mysql2": "^2.2.5",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "puppeteer": "^8.0.0",
