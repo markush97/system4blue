@@ -9,12 +9,15 @@ import {
   EntityTableDataSource,
   composeHttpPagingParams,
 } from '@system4blue/components';
+import { UUID4 } from '@system4blue/types';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AdminPartnersFormComponent } from './admin-partners-form/admin-partners-form.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminPartnersService implements EntityTableDataSource {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, private readonly dialogService: DialogService) {}
 
   async loadEntites(
     searchString?: string,
@@ -42,14 +45,41 @@ export class AdminPartnersService implements EntityTableDataSource {
     this.http.delete(`/api/partners/${id}`).subscribe();
   }
 
-  editEntity(id: string): void {
-    throw new Error('Method not implemented.');
+  async editEntity(id: string) {
+    const partner = await this.getPartner(id);
+
+    const ref = this.dialogService.open(AdminPartnersFormComponent, {
+      header: 'Partner Information',
+      width: '55%',
+      closeOnEscape: true,
+      data: {
+        partner: partner
+      }
+    })
   }
-  showEntity(id: string): void {
-    throw new Error('Method not implemented.');
+
+  async showEntity(id: string) {
+    await this.editEntity(id);
   }
 
   addEntity(): void {
-    throw new Error('Method not implemented.');
+    const ref = this.dialogService.open(AdminPartnersFormComponent, {
+      header: 'Neuen Partner anlegen',
+      width: '55%',
+      dismissableMask: true,
+      closeOnEscape: true
+    })
+  }
+
+  async createPartner(partner: Partner): Promise<Partner> {
+    return this.http.post<Partner>('/api/partners', partner).toPromise();
+  }
+
+  async updatePartner(partnerId: UUID4, partner: Partner): Promise<Partner> {
+    return this.http.put<Partner>(`/api/partners/${partnerId}`, partner).toPromise();
+  }
+
+  async getPartner(partnerId: UUID4): Promise<Partner> {
+    return this.http.get<Partner>(`/api/partners/${partnerId}`).toPromise();
   }
 }

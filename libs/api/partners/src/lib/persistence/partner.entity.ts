@@ -37,4 +37,7 @@ export class PartnerEntity implements Partner {
   @UpdateDateColumn()
   updatedAt: string;
 
+  @Column({length: 1000, type: 'varchar'})
+  description?: string;
+
 }

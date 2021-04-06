@@ -4,7 +4,7 @@ import { PartnerRepository } from './persistence/partner.repository';
 import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 
-const searchAbleFields: (string & keyof Partner)[] = ['contactEmail', 'contactName', 'name', 'webpage', ];
+const searchAbleFields: (string & keyof Partner)[] = ['contactEmail', 'contactName', 'name', 'webpage', 'description'];
 
 @Injectable()
 export class PartnersService {
@@ -24,5 +24,9 @@ export class PartnersService {
 
   async getById(id: UUID4): Promise<Partner> {
     return this.partnerRepository.getOneById(id);
+  }
+
+  async update(id: UUID4, partner: Partner): Promise<void> {
+    return this.partnerRepository.updateOneById(id, partner);
   }
 }

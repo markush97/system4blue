@@ -1,0 +1,87 @@
+<div [formGroup]="partnerForm" class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-6">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label for="webpage">Homepage</label>
+    <input id="webpage" type="url" formControlName="webpage" pInputText />
+  </div>
+  <div class="p-field p-col-12">
+    <label for="description">Beschreibung</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      type="text"
+      rows="4"
+      pInputTextarea
+    ></textarea>
+  </div>
+  <div class="p-field p-col-12 p-md-8">
+    <label for="street">Adresse</label>
+    <input id="street" type="text" formControlName="street" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="country">Staat</label>
+    <p-dropdown
+      [filter]="true"
+      inputId="country"
+      [options]="states"
+      placeholder="Staat"
+      formControlName="country"
+      optionLabel="name"
+      optionValue="code"
+    ></p-dropdown>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="zip">PLZ</label>
+    <input id="zip" type="number" formControlName="zip" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="contactName">Ansprechpartner</label>
+    <input
+      id="contactName"
+      type="text"
+      formControlName="contactName"
+      pInputText
+    />
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="contactEmail">Kontaktemail</label>
+    <input
+      id="contactEmail"
+      type="email"
+      formControlName="contactEmail"
+      pInputText
+    />
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="contactPhone">Kontakttelefonnummer</label>
+    <input
+      id="contactPhone"
+      type="tel"
+      formControlName="contactPhone"
+      pInputText
+    />
+  </div>
+</div>
+<div class="p-d-flex p-jc-end">
+  <button
+    class="p-button-raised p-mr-2 p-mr"
+    pRipple
+    pButton
+    type="button"
+    label="Speichern"
+    (click)="save()"
+    icon="pi pi-check"
+  ></button>
+  <button
+    class="p-button-danger"
+    pRipple
+    pButton
+    type="button"
+    label="Abbrechen"
+    (click)="close()"
+    icon="pi pi-times"
+  ></button>
+</div>

@@ -52,7 +52,7 @@
       </span>
     </div>
   </ng-template>
-  <ng-template pTemplate="header">
+  <ng-template pTemplate="header" *ngIf="entities.length > 0">
     <tr>
       <ng-container *ngFor="let column of columns">
         <th *ngIf="column.sortAble" [pSortableColumn]="column.field">
@@ -92,7 +92,7 @@
   </ng-template>
 
   <ng-template pTemplate="body" let-entity>
-    <tr class="entity">
+    <tr class="entity" (click)="showEntity(entity.id)">
       <ng-container *ngFor="let column of columns">
         <ng-container [ngSwitch]="column.type">
           <td *ngSwitchCase="'phone'" class="phone">
@@ -119,7 +119,7 @@
           pRipple
           icon="pi pi-pencil"
           class="p-button-rounded p-button-success p-mr-2"
-          (click)="editEntity(entity.id)"
+          (click)="editEntity(entity.id); $event.stopPropagation()"
           pTooltip="{{tableDefinition.entityName}} bearbeiten"
           tooltipPosition="bottom"
         ></button>
@@ -128,7 +128,7 @@
           pRipple
           icon="pi pi-trash"
           class="p-button-rounded p-button-warning"
-          (click)="deleteEntity(entity.id)"
+          (click)="deleteEntity(entity.id); $event.stopPropagation()"
           pTooltip="{{tableDefinition.entityName}} löschen"
           tooltipPosition="bottom"
         ></button>

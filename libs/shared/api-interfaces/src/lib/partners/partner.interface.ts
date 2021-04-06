@@ -15,6 +15,8 @@ export interface Partner {
 
   webpage?: string;
 
+  description?: string;
+
   createdAt: string;
   updatedAt: string;
 }
