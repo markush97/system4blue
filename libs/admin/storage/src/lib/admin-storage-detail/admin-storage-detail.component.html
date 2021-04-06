@@ -1,0 +1,84 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <h2>
+          Lager Detailansicht: <u>{{ container?.name }}</u>
+        </h2>
+      </div>
+      <div class="p-toolbar-group-right">
+        <p-button
+          [disabled]="!container"
+          (click)="addSubContainer()"
+          label="Unterlager hinzufügen"
+          icon="pi pi-plus"
+          styleClass="p-button-success"
+          class="p-mr-2"
+        ></p-button>
+        <p-button
+          [disabled]="!container"
+          (click)="updateContainer()"
+          icon="pi pi-pencil"
+          styleClass="p-button-warning"
+          class="p-mr-2"
+        ></p-button>
+        <p-button
+          [disabled]="!container"
+          (click)="deleteContainer()"
+          icon="pi pi-trash"
+          styleClass="p-button-danger"
+        ></p-button>
+      </div>
+    </p-toolbar>
+  </ng-template>
+
+  <div *ngIf="!container; else containerDetail">
+    <h4>Kein Lager ausgewählt!</h4>
+  </div>
+
+  <ng-template #containerDetail>
+    <div>
+      <div class="p-mb-4 p-ml-2">
+        <b>Lagertyp:  </b>
+        <i [class]="storageService.getContainerIcon(container.type)"></i>
+        {{ types[container.type] }}
+      </div>
+      <div class="p-mb-2">
+        <p-fieldset *ngIf="container.description" legend="Beschreibung">
+          {{ container.description }}
+        </p-fieldset>
+      </div>
+      <p-fieldset
+        #itemList
+        legend="Gegenstände"
+        [toggleable]="true"
+        [(collapsed)]="itemListCollapsed"
+        (onBeforeToggle)="reloadItems($event.collapsed)"
+      >
+        <p-table [value]="items" styleClass="p-itemTable-responsive">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Abkürzung</th>
+              <th>Name</th>
+              <th>ItemGruppe</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr pSelectableRow [routerLink]="['/items/' + item.id]">
+              <td>{{ item.externalId }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.itemGroup.name }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td [attr.colspan]="3">
+                Keine Gegenstände diesem Lager(-Behälter) zugeordnet!
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-fieldset>
+    </div>
+  </ng-template>
+</p-card>

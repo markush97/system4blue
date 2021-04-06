@@ -73,7 +73,6 @@ export class AdminPartnersService implements EntityTableDataSource {
     this.ref = this.dialogService.open(AdminPartnersFormComponent, {
       header: 'Partner Information',
       dismissableMask: true,
-      width: '55%',
       closeOnEscape: true,
       data: {
         partner: partner,
@@ -88,7 +87,6 @@ export class AdminPartnersService implements EntityTableDataSource {
   addEntity(): void {
     this.ref = this.dialogService.open(AdminPartnersFormComponent, {
       header: 'Neuen Partner anlegen',
-      width: '55%',
       dismissableMask: true,
       closeOnEscape: true,
     });

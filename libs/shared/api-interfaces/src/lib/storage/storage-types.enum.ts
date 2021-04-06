@@ -1,6 +1,8 @@
 export enum StorageType {
   CAR,
   FIXED,
+  BOX,
   PERSON,
-  OTHER
+  OTHER,
+  HOUSE
 }

@@ -26,7 +26,22 @@ export class StorageService {
     return this.storageRepository.deleteOneById(id);
   }
 
-  async getById(id: UUID4): Promise<StorageContainer> {
-    return this.storageRepository.getOneById(id);
+  async getByIdWithAncestors(id: UUID4): Promise<StorageContainer & {ancestors: StorageContainer[]}> {
+    const container = await this.storageRepository.getOneById(id);
+    const ancestors = await this.storageRepository.getAncestorList(container);
+
+    return {...container, ancestors: ancestors};
+  }
+
+  async getRoots(): Promise<StorageContainer[]> {
+    return this.storageRepository.getRoots();
+  }
+
+  async getAll(): Promise<StorageContainer[]> {
+    return this.storageRepository.getAll();
+  }
+
+  async updateContainer(containerId: UUID4, container: StorageContainer) {
+    return this.storageRepository.updateOneById(containerId, container);
   }
 }

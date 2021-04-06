@@ -58,7 +58,6 @@ export class AdminMembersService implements EntityTableDataSource {
 
     this.ref = this.dialogService.open(AdminMembersFormComponent, {
       header: 'Mitglied Information',
-      width: '55%',
       closeOnEscape: true,
       dismissableMask: true,
       data: {
@@ -74,7 +73,6 @@ export class AdminMembersService implements EntityTableDataSource {
   addEntity(): void {
     this.ref = this.dialogService.open(AdminMembersFormComponent, {
       header: 'Neues Mitglied anlegen',
-      width: '55%',
       dismissableMask: true,
       closeOnEscape: true,
     });

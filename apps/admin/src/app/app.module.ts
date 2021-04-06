@@ -8,8 +8,9 @@ import {
   adminDashboardRoutes,
 } from '@system4blue/admin/dashboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
     BrowserModule,
     BrowserAnimationsModule,
     ToastModule,
+    ConfirmDialogModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', children: adminDashboardRoutes },
@@ -49,13 +51,20 @@ import { ToastModule } from 'primeng/toast';
               (module) => module.AdminPartnersModule
             ),
         },
-        {path: '*', redirectTo: 'dashboard', pathMatch: 'full'}
+        { path: '*', redirectTo: 'dashboard', pathMatch: 'full' },
+        {
+          path: 'storage',
+          loadChildren: () =>
+            import('@system4blue-admin-storage').then(
+              (module) => module.AdminStorageModule
+            ),
+        },
       ],
       { initialNavigation: 'enabled' }
     ),
     AdminDashboardModule,
   ],
-  providers: [MessageService,],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

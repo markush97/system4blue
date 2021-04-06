@@ -1,9 +1,10 @@
-import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, OneToMany, UpdateDateColumn, CreateDateColumn} from "typeorm";
+import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, OneToMany, UpdateDateColumn, CreateDateColumn, Unique} from "typeorm";
 import {Item, StorageContainer, StorageType} from '@system4blue/api-interfaces';
 import {ItemEntity} from '@system4blue/api/items';
 
 @Entity()
 @Tree('nested-set')
+@Unique(['parentContainer', 'name'])
 export class StorageContainerEntity implements StorageContainer {
 
   @PrimaryGeneratedColumn('uuid')

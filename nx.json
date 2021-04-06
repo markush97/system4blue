@@ -84,6 +84,9 @@
     },
     "components-entity-table": {
       "tags": []
+    },
+    "admin-storage": {
+      "tags": []
     }
   }
 }

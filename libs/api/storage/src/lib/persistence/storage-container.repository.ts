@@ -14,4 +14,15 @@ export class StorageContainerRepository extends BasicRepository<StorageContainer
     return this.repository.save(this.repository.create(container));
   }
 
+  async getRoots(): Promise<StorageContainer[]> {
+    return this.treeRepository.findRoots();
+  }
+
+  async getAll(): Promise<StorageContainer[]> {
+    return this.treeRepository.findTrees();
+  }
+
+  async getAncestorList(container: StorageContainerEntity): Promise<StorageContainer[]> {
+    return this.treeRepository.findAncestors(container);
+  }
 }

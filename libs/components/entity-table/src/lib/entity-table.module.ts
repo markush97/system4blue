@@ -43,6 +43,6 @@ import { TooltipModule } from 'primeng/tooltip';
   ],
   declarations: [EntityTableComponent],
   exports: [EntityTableComponent],
-  providers: [ConfirmationService]
+  providers: []
 })
 export class EntityTableModule {}

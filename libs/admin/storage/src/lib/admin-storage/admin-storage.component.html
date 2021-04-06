@@ -1,0 +1,35 @@
+<h1>Lager</h1>
+<div class="p-mb-2 p-shadow-1">
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      <p-button
+        label="Neues Hauptlager"
+        (click)="addRootContainer()"
+        icon="pi pi-plus"
+        styleClass="p-button-warning"
+      ></p-button>
+    </div>
+
+    <div class="p-toolbar-group-right">
+      <p-button
+        (click)="containerSelector.refresh()"
+        icon="pi pi-refresh"
+      ></p-button>
+      <!--<p-button class="p-ml-2" icon="pi pi-file"></p-button>-->
+    </div>
+  </p-toolbar>
+</div>
+<div class="p-mb-2 p-shadow-1">
+  <system4blue-admin-storage-selector
+    #containerSelector
+    (containerSelectEvent)="
+      selectContainer($event); containerDetail.collapseItemList()
+    "
+  ></system4blue-admin-storage-selector>
+</div>
+<div class="p-shadow-1">
+  <system4blue-admin-storage-detail
+    #containerDetail
+    [container]="selectedContainer"
+  ></system4blue-admin-storage-detail>
+</div>

@@ -32,5 +32,7 @@ import { AdminItemsService } from './admin-items.service';
   providers: [
     AdminItemsService
   ],
+  exports: [
+  ]
 })
 export class AdminItemsModule {}

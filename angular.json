@@ -629,6 +629,23 @@
           }
         }
       }
+    },
+    "admin-storage": {
+      "projectType": "library",
+      "root": "libs/admin/storage",
+      "sourceRoot": "libs/admin/storage/src",
+      "prefix": "system4blue",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/admin/storage/src/**/*.ts",
+              "libs/admin/storage/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

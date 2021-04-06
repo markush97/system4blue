@@ -13,7 +13,7 @@ export class AdminPartnersFormComponent implements OnInit {
   submitted = false;
   partnerForm!: FormGroup;
 
-  states: any[] = [
+  states = [
     { name: 'Österreich', code: 'AT' },
     { name: 'Deutschland', code: 'DE' },
     { name: 'Schweiz', code: 'CH' },
