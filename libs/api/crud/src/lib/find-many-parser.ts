@@ -8,7 +8,9 @@ import {
   FindManyOptions,
   ILike,
   LessThan,
+  LessThanOrEqual,
   MoreThan,
+  MoreThanOrEqual,
   Not,
   ObjectLiteral,
 } from 'typeorm';
@@ -100,6 +102,14 @@ function parseFilterParams<Entity extends ObjectLiteral>(
 
       case 'lt':
         filter[key] = LessThan(compareValue);
+        break;
+
+      case 'lte':
+        filter[key] = LessThanOrEqual(compareValue);
+        break;
+
+      case 'gte':
+        filter[key] = MoreThanOrEqual(compareValue);
         break;
 
       case 'ncont':

@@ -4,7 +4,7 @@ import { parseFindManyParams } from '@system4blue/api/crud';
 import { UUID4 } from '@system4blue/types';
 import { MemberRepository } from './persistence/members.repository';
 
-const searchAbleFields: (string & keyof Member)[] = ['email', 'externalId', 'name'];
+const searchAbleFields: (string & keyof Member)[] = ['email', 'memberId', 'firstName', 'lastName'];
 
 @Injectable()
 export class MembersService {
@@ -24,6 +24,10 @@ export class MembersService {
 
   async getById(id: UUID4): Promise<Member> {
     return this.memberRepository.getOneById(id);
+  }
+
+  async update(id: UUID4, member: Member): Promise<void> {
+    return this.memberRepository.updateOneById(id, member);
   }
 
 }

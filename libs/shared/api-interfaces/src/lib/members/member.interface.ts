@@ -3,9 +3,10 @@ import { UUID4 } from "@system4blue/types";
 export interface Member {
   id: UUID4;
 
-  name: string;
+  firstName: string;
+  lastName: string;
 
-  externalId: string;
+  memberId: string;
 
   street?: string;
   country?: string;

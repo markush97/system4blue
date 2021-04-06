@@ -2,38 +2,37 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   FilterParam,
+  Member,
   PaginationResult,
-  Partner,
 } from '@system4blue/api-interfaces';
 import {
-  EntityTableDataSource,
   composeHttpPagingParams,
+  EntityTableDataSource,
 } from '@system4blue/components';
 import { UUID4 } from '@system4blue/types';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AdminPartnersFormComponent } from './admin-partners-form/admin-partners-form.component';
+import { AdminMembersFormComponent } from './admin-members-form/admin-members-form.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminPartnersService implements EntityTableDataSource {
-  private readonly PATH = '/api/partners';
+export class AdminMembersService implements EntityTableDataSource {
+  private readonly PATH = '/api/members';
 
   constructor(
     private readonly http: HttpClient,
     private readonly dialogService: DialogService
   ) {}
-
-  async loadEntites(
+  loadEntites(
     searchString?: string,
     page?: number,
     limit?: number,
     sortByField?: string,
-    sortOrder: 'ASC' | 'DESC' = 'ASC',
+    sortOrder?: 'ASC' | 'DESC',
     filters?: FilterParam<any>[]
-  ): Promise<PaginationResult<Partner>> {
+  ): Promise<PaginationResult<any>> {
     return this.http
-      .get<PaginationResult<Partner>>(this.PATH, {
+      .get<PaginationResult<Member>>(this.PATH, {
         params: composeHttpPagingParams(
           searchString,
           page,
@@ -45,21 +44,20 @@ export class AdminPartnersService implements EntityTableDataSource {
       })
       .toPromise();
   }
-
   async deleteEntity(id: string): Promise<void> {
     this.http.delete(`${this.PATH}/${id}`).subscribe();
   }
 
   async editEntity(id: string) {
-    const partner = await this.getPartner(id);
+    const member = await this.getMember(id);
 
-    const ref = this.dialogService.open(AdminPartnersFormComponent, {
-      header: 'Partner Information',
-      dismissableMask: true,
+    const ref = this.dialogService.open(AdminMembersFormComponent, {
+      header: 'Mitglied Information',
       width: '55%',
       closeOnEscape: true,
+      dismissableMask: true,
       data: {
-        partner: partner,
+        member: member,
       },
     });
   }
@@ -69,25 +67,23 @@ export class AdminPartnersService implements EntityTableDataSource {
   }
 
   addEntity(): void {
-    const ref = this.dialogService.open(AdminPartnersFormComponent, {
-      header: 'Neuen Partner anlegen',
+    const ref = this.dialogService.open(AdminMembersFormComponent, {
+      header: 'Neues Mitglied anlegen',
       width: '55%',
       dismissableMask: true,
       closeOnEscape: true,
     });
   }
 
-  async createPartner(partner: Partner): Promise<Partner> {
-    return this.http.post<Partner>(this.PATH, partner).toPromise();
+  async createMember(member: Member): Promise<Member> {
+    return this.http.post<Member>(this.PATH, member).toPromise();
   }
 
-  async updatePartner(partnerId: UUID4, partner: Partner): Promise<Partner> {
-    return this.http
-      .put<Partner>(`${this.PATH}/${partnerId}`, partner)
-      .toPromise();
+  async updateMember(memberId: UUID4, member: Member): Promise<Member> {
+    return this.http.put<Member>(`${this.PATH}/${memberId}`, member).toPromise();
   }
 
-  async getPartner(partnerId: UUID4): Promise<Partner> {
-    return this.http.get<Partner>(`${this.PATH}/${partnerId}`).toPromise();
+  async getMember(memberId: UUID4): Promise<Member> {
+    return this.http.get<Member>(`${this.PATH}/${memberId}`).toPromise();
   }
 }

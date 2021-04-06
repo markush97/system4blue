@@ -32,6 +32,15 @@
           tooltipPosition="bottom"
         ></button>
         <button
+        pButton
+        pRipple
+        icon="pi pi-refresh"
+        class="p-mr-2"
+        pTooltip="Aktualisieren"
+        tooltipPosition="bottom"
+        (click)="refresh()"
+      ></button>
+        <button
           pButton
           pRipple
           label="Neu"
@@ -52,7 +61,7 @@
       </span>
     </div>
   </ng-template>
-  <ng-template pTemplate="header" *ngIf="entities.length > 0">
+  <ng-template pTemplate="header">
     <tr>
       <ng-container *ngFor="let column of columns">
         <th *ngIf="column.sortAble" [pSortableColumn]="column.field">

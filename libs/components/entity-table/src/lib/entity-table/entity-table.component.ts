@@ -24,6 +24,10 @@ const operatorMapper: Record<string, FilterCondition> = {
   dateAfter: 'gt',
   dateIs: 'eq',
   dateIsNot: 'ne',
+  lt: 'lt',
+  lte: 'lte',
+  gt: 'gt',
+  gte: 'gte',
 };
 
 @Component({
@@ -51,6 +55,10 @@ export class EntityTableComponent implements OnInit {
     this.loadEntities();
   }
 
+  refresh() {
+    this.loadEntities();
+  }
+
   loadEntities(event?: LazyLoadEvent) {
     this.loading = true;
 
@@ -65,6 +73,7 @@ export class EntityTableComponent implements OnInit {
       const filters: FilterParam<any>[] = [];
 
       if (event.filters !== undefined) {
+
         Object.entries(event.filters).forEach(([key, filter]) => {
           if (filter.matchMode !== undefined && filter.value)
             filters.push(

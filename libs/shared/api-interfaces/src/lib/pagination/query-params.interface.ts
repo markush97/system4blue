@@ -15,6 +15,6 @@ export interface QueryParams<T extends object = object> {
   search?: string;
 }
 
-export type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'starts' | 'ends' | 'cont' | 'ncont';
+export type FilterCondition = 'eq' | 'ne' | 'gt' | 'lt' | 'lte' | 'gte' | 'starts' | 'ends' | 'cont' | 'ncont';
 export type FilterParam<T extends object> = `${string & keyof T}||${FilterCondition}||${string}`;
 export type OrderParam<T extends object> = `${string & keyof T}||${'ASC' | 'DESC'}`;

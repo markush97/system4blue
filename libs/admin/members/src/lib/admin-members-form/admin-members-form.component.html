@@ -1,0 +1,72 @@
+<div [formGroup]="memberForm" class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-5">
+    <label for="firstName">Vorname</label>
+    <input id="firstName" type="text" formControlName="firstName" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-5">
+    <label for="lastName">Nachname</label>
+    <input id="lastName" type="text" formControlName="lastName" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="memberId">Mitgliedsnummer</label>
+    <input id="memberId" type="number" formControlName="memberId" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-8">
+    <label for="street">Adresse</label>
+    <input id="street" type="text" formControlName="street" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="country">Staat</label>
+    <p-dropdown
+      [filter]="true"
+      inputId="country"
+      [options]="states"
+      placeholder="Staat"
+      formControlName="country"
+      optionLabel="name"
+      optionValue="code"
+    ></p-dropdown>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="zip">PLZ</label>
+    <input id="zip" type="number" formControlName="zip" pInputText />
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      pInputText
+    />
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="phone">Telefonnummer</label>
+    <input
+      id="phone"
+      type="tel"
+      formControlName="phone"
+      pInputText
+    />
+  </div>
+</div>
+<div class="p-d-flex p-jc-end">
+  <button
+    class="p-button-raised p-mr-2 p-mr"
+    pRipple
+    pButton
+    type="button"
+    label="Speichern"
+    (click)="save()"
+    icon="pi pi-check"
+  ></button>
+  <button
+    class="p-button-danger"
+    pRipple
+    pButton
+    type="button"
+    label="Abbrechen"
+    (click)="close()"
+    icon="pi pi-times"
+  ></button>
+</div>

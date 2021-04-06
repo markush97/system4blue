@@ -8,10 +8,13 @@ export class MemberEntity implements Member {
   id: string;
 
   @Column()
-  name: string;
+  firstName: string;
+
+  @Column()
+  lastName: string;
 
   @Column({unique: true})
-  externalId: string;
+  memberId: string;
 
   @Column({nullable: true})
   street?: string;
