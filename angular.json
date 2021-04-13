@@ -619,6 +619,18 @@
       "sourceRoot": "libs/components/entity-table/src",
       "prefix": "s4b",
       "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/components/entity-table/tsconfig.lib.json",
+            "project": "libs/components/entity-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/components/test/tsconfig.lib.prod.json"
+            }
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {

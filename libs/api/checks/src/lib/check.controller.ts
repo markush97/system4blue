@@ -21,7 +21,7 @@ import { CheckPdfService } from './check-pdf.service';
 import { CheckResultService } from './check-result.service';
 import { CheckRunService } from './check-run.service';
 import { CheckTemplateService } from './check-template.service';
-@Controller('check')
+@Controller('checks')
 export class CheckController {
   constructor(
     private readonly checkResultService: CheckResultService,
@@ -30,24 +30,24 @@ export class CheckController {
     private readonly checkRunService: CheckRunService
   ) {}
 
-  @Get(':id')
+  @Get('results/:id')
   async getCheckResult(@Param('id') id: UUID4): Promise<CheckResult> {
     return this.checkResultService.getById(id);
   }
 
-  @Get()
+  @Get('results')
   async getMany(
     @Query() queryParams: QueryParams<CheckResult>
   ): Promise<PaginationResult<CheckResult>> {
     return this.checkResultService.getMany(queryParams);
   }
 
-  @Post()
+  @Post('results')
   async createCheckResult(@Body() check: CheckResult): Promise<CheckResult> {
     return this.checkResultService.create(check);
   }
 
-  @Delete(':id')
+  @Delete('results/:id')
   async deleteCheckResult(@Param('id') id: UUID4): Promise<void> {
     return this.checkResultService.delete(id);
   }
@@ -64,14 +64,14 @@ export class CheckController {
     return this.checkTemplateService.getMany(queryParams);
   }
 
-  @Post('template')
+  @Post('templates')
   async createCheckTemplate(
     @Body() check: CheckTemplate
   ): Promise<CheckTemplate> {
     return this.checkTemplateService.create(check);
   }
 
-  @Delete('template/:id')
+  @Delete('templates/:id')
   async deleteCheckTemplate(@Param('id') id: UUID4): Promise<void> {
     return this.checkTemplateService.delete(id);
   }

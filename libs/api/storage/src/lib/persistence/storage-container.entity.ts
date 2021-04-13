@@ -3,7 +3,7 @@ import {Item, StorageContainer, StorageType} from '@system4blue/api-interfaces';
 import {ItemEntity} from '@system4blue/api/items';
 
 @Entity()
-@Tree('nested-set')
+@Tree('materialized-path')
 @Unique(['parentContainer', 'name'])
 export class StorageContainerEntity implements StorageContainer {
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CheckTemplate } from '@system4blue/api-interfaces';
+import { CheckTemplate, PaginationResult } from '@system4blue/api-interfaces';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminChecksTemplateFormComponent } from './admin-checks-template-form/admin-checks-template-form.component';
@@ -11,7 +11,7 @@ import { UUID4 } from '@system4blue/types';
   providedIn: 'root',
 })
 export class AdminChecksTemplateService {
-  private readonly PATH = '/api/check/template';
+  private readonly PATH = '/api/checks/templates';
 
   private ref?: DynamicDialogRef;
 
@@ -21,6 +21,18 @@ export class AdminChecksTemplateService {
     private readonly messageService: MessageService,
     private readonly confirmationService: ConfirmationService
   ) {}
+
+  async getTemplatesList(): Promise<CheckTemplate[]> {
+    return (await this.getTemplates()).data;
+  }
+
+  async getTemplates(): Promise<PaginationResult<CheckTemplate>> {
+    return this.http.get<PaginationResult<CheckTemplate>>(this.PATH).toPromise();
+  }
+
+  async getTemplate(templateId: UUID4): Promise<CheckTemplate> {
+    return this.http.get<CheckTemplate>(`${this.PATH}/${templateId}`).toPromise();
+  }
 
   addTemplate(): void {
     this.dialogService.open(AdminChecksTemplateFormComponent, {
