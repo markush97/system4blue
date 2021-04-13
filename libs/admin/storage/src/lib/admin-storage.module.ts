@@ -10,10 +10,10 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { AdminStorageDetailComponent } from './admin-storage-detail/admin-storage-detail.component';
-import {CardModule} from 'primeng/card';
-import {FieldsetModule} from 'primeng/fieldset';
+import { CardModule } from 'primeng/card';
+import { FieldsetModule } from 'primeng/fieldset';
 import { AdminItemsService } from '@system4blue/admin/items';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { AdminStorageFormComponent } from './admin-storage-form/admin-storage-form.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,7 +21,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -44,7 +43,12 @@ import { ConfirmationService } from 'primeng/api';
     TreeModule,
     DynamicDialogModule,
   ],
-  declarations: [AdminStorageComponent, AdminStorageSelectorComponent, AdminStorageDetailComponent, AdminStorageFormComponent],
+  declarations: [
+    AdminStorageComponent,
+    AdminStorageSelectorComponent,
+    AdminStorageDetailComponent,
+    AdminStorageFormComponent,
+  ],
   providers: [AdminStorageService, AdminItemsService, DialogService],
 })
 export class AdminStorageModule {}

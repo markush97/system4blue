@@ -1,0 +1,41 @@
+<div [formGroup]="templateForm" class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-6">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" pInputText />
+  </div>
+  <div class="p-field p-col-12">
+    <label for="description">Beschreibung</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      type="text"
+      rows="4"
+      pInputTextarea
+    ></textarea>
+  </div>
+  <div class="p-field p-col-12 p-md-12">
+    <label for="checks">Überprüfungen</label>
+    <p-chips formControlName="checks" [allowDuplicate]="false" separator="," placeholder="(Teil-)Überprüfungen eingeben"></p-chips>
+    <small id="checks-help">Einzelne Überprüfungen eingeben und mit Beistrich oder Enter bestätigen.</small>
+  </div>
+  <div class="p-d-flex p-jc-end">
+      <button
+        class="p-button-raised p-mr-2 p-mr"
+        pRipple
+        pButton
+        type="button"
+        label="Speichern"
+        (click)="save()"
+        icon="pi pi-check"
+      ></button>
+      <button
+        class="p-button-danger"
+        pRipple
+        pButton
+        type="button"
+        label="Abbrechen"
+        (click)="close()"
+        icon="pi pi-times"
+      ></button>
+  </div>
+</div>
