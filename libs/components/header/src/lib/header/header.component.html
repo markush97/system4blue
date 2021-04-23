@@ -1,0 +1,12 @@
+<p-sidebar
+  [styleClass]="
+    sidenavExpanded ? 'sidenav sidenav-expanded' : 'sidenav sidenav-collapsed'
+  "
+  [modal]="false"
+  [dismissible]="false"
+  [closeOnEscape]="false"
+  [visible]="true"
+  [showCloseIcon]="false"
+>
+  <button (click)="sidenavExpanded = !sidenavExpanded">Test</button>
+</p-sidebar>

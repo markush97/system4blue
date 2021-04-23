@@ -87,6 +87,9 @@
     },
     "admin-storage": {
       "tags": []
+    },
+    "components-header": {
+      "tags": []
     }
   }
 }

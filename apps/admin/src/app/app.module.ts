@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { HeaderModule } from '@system4blue/components';
 
 @NgModule({
   declarations: [AppComponent],
@@ -63,6 +64,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
       { initialNavigation: 'enabled' }
     ),
     AdminDashboardModule,
+    HeaderModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],

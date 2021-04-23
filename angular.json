@@ -658,6 +658,23 @@
           }
         }
       }
+    },
+    "components-header": {
+      "projectType": "library",
+      "root": "libs/components/header",
+      "sourceRoot": "libs/components/header/src",
+      "prefix": "s4b",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/components/header/src/**/*.ts",
+              "libs/components/header/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,14 @@
+:host ::ng-deep {
+  .sidenav {
+    transition: all 0.5s;
+  }
+
+  .sidenav-expanded {
+    width: 20em;
+  }
+
+  .sidenav-collapsed {
+    width: 3em;
+
+  }
+}
