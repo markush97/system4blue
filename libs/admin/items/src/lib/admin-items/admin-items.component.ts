@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminItemsService } from '../admin-items.service';
 
 @Component({
   selector: 'system4blue-admin-items',
   templateUrl: './admin-items.component.html',
   styleUrls: ['./admin-items.component.scss']
 })
-export class AdminItemsComponent implements OnInit {
+export class AdminItemsComponent {
 
-  constructor() { }
+  constructor(private readonly itemService: AdminItemsService) { }
 
-  ngOnInit(): void {
+  test() {
+    this.itemService.addItemGroup();
   }
 
 }

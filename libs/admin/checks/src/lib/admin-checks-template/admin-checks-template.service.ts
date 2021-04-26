@@ -11,7 +11,7 @@ import { UUID4 } from '@system4blue/types';
   providedIn: 'root',
 })
 export class AdminChecksTemplateService {
-  private readonly PATH = '/api/checks/templates';
+  private readonly PATH = '/api/checks/template';
 
   private ref?: DynamicDialogRef;
 

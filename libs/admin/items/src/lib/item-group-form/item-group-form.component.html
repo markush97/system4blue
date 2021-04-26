@@ -1,0 +1,123 @@
+<div [formGroup]="itemGroupForm" class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-6">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" pInputText />
+  </div>
+  <div class="p-field p-col-12">
+    <label for="description">Beschreibung</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      type="text"
+      rows="4"
+      pInputTextarea
+    ></textarea>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="minAmount">Warnung bei:</label>
+    <p-inputNumber formControlName="minAmount"></p-inputNumber>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="maxAmount">Maximalbestand:</label>
+    <p-inputNumber formControlName="maxAmount"></p-inputNumber>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="unit">Einheit:</label>
+    <p-dropdown
+      appendTo="body"
+      inputId="unit"
+      [options]="unitPossibilites"
+      placeholder="Einheit"
+      formControlName="unit"
+    ></p-dropdown>
+  </div>
+  <div class="p-field p-col-12 p-md-2">
+    <label for="pricePerUnit">Preis pro Einheit:</label>
+    <p-inputNumber
+      formControlName="pricePerUnit"
+      mode="currency"
+      currency="EUR"
+      locale="de-DE"
+    ></p-inputNumber>
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="unit">Erwartetete Lebensdauer:</label>
+    <div class="p-inputgroup p-fluid">
+      <div class="p-field p-col-12 p-md-6">
+        <p-inputNumber
+          formControlName="defaultLifespan"
+        ></p-inputNumber>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <p-dropdown
+          appendTo="body"
+          inputId="timeRange"
+          [options]="timeRanges"
+          placeholder="Zeitdauer"
+          formControlName="timeRange"
+          optionLabel="label"
+          optionValue="factor"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="partnerPossibilites" class="p-field p-col-12 p-md-4">
+    <label for="seller">Verkäufer:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="seller"
+      [options]="partnerPossibilites"
+      placeholder="Verkäufer"
+      formControlName="seller"
+      optionLabel="name"
+      optionValue="id"
+    ></p-dropdown>
+  </div>
+  <div *ngIf="partnerPossibilites" class="p-field p-col-12 p-md-4">
+    <label for="seller">Hersteller:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="producer"
+      [options]="partnerPossibilites"
+      placeholder="Hersteller"
+      formControlName="producer"
+      optionLabel="name"
+      optionValue="id"
+    ></p-dropdown>
+  </div>
+  <div *ngIf="templatePossibilites" class="p-field p-col-12 p-md-4">
+    <label for="seller">Prüfvorlage:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="checkTemplate"
+      [options]="templatePossibilites"
+      placeholder="Prüfvorlage"
+      formControlName="checkTemplate"
+      optionLabel="name"
+      optionValue="id"
+    ></p-dropdown>
+  </div>
+  <div class="p-d-flex p-jc-end">
+    <button
+      class="p-button-raised p-mr-2 p-mr"
+      pRipple
+      pButton
+      type="button"
+      label="Speichern"
+      (click)="save()"
+      icon="pi pi-check"
+    ></button>
+    <button
+      class="p-button-danger"
+      pRipple
+      pButton
+      type="button"
+      label="Abbrechen"
+      (click)="close()"
+      icon="pi pi-times"
+    ></button>
+  </div>
+</div>
