@@ -301,7 +301,7 @@
             "polyfills": "apps/admin/src/polyfills.ts",
             "tsConfig": "apps/admin/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
+            "assets": ["apps/admin/src/favicons", "apps/admin/src/assets"],
             "styles": [
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "./node_modules/primeflex/primeflex.css",
