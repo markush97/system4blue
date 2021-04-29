@@ -37,7 +37,6 @@ import { HeaderModule } from '@system4blue/components';
               (module) => module.AdminChecksModule
             ),
         },
-        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         {
           path: 'members',
           loadChildren: () =>
@@ -52,7 +51,6 @@ import { HeaderModule } from '@system4blue/components';
               (module) => module.AdminPartnersModule
             ),
         },
-        { path: '*', redirectTo: 'dashboard', pathMatch: 'full' },
         {
           path: 'storage',
           loadChildren: () =>
@@ -60,6 +58,8 @@ import { HeaderModule } from '@system4blue/components';
               (module) => module.AdminStorageModule
             ),
         },
+        { path: '*', redirectTo: 'dashboard', pathMatch: 'full' },
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       ],
       { initialNavigation: 'enabled' }
     ),

@@ -15,7 +15,7 @@ export class AdminStorageDetailComponent {
   itemListCollapsed = true;
 
   constructor(
-    private readonly itemService: AdminItemsService,
+    // private readonly itemService: AdminItemsService,
     readonly storageService: AdminStorageService
   ) {}
 
@@ -30,9 +30,9 @@ export class AdminStorageDetailComponent {
 
   reloadItems(collapsed: boolean) {
     if (collapsed) {
-      this.itemService
-        .loadItemsInStorage(this.container.id)
-        .then((results) => (this.items = results.data));
+      //this.itemService
+      //  .loadItemsInStorage(this.container.id)
+      //  .then((results) => (this.items = results.data));
     }
   }
 

@@ -38,6 +38,7 @@
           pRipple
           icon="pi pi-pencil"
           class="p-button-rounded p-button-success p-mr-2"
+          (click)="updateItemGroup(itemGroup)"
         ></button>
         <button
           pButton
@@ -50,6 +51,7 @@
           pRipple
           icon="pi pi-plus"
           class="p-button-rounded p-button-primary"
+          (click)="addItem(itemGroup)"
         ></button>
       </td>
     </tr>
@@ -80,7 +82,7 @@
                 <td>{{ item.name }}</td>
                 <td>{{ item.externalId }}</td>
                 <td>{{ item.expiration }}</td>
-                <td>{{ item.state }}</td>
+                <td>{{ states[item.state].label }}</td>
               </tr>
             </ng-template>
           </p-table>

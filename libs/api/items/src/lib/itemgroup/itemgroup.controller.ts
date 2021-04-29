@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { Item, ItemGroup, PaginationResult, QueryParams } from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { ItemGroupService } from './itemgroup.service';
@@ -22,6 +22,11 @@ export class ItemGroupController {
   @Post()
   async create(@Body() item: ItemGroup): Promise<ItemGroup> {
     return this.itemgroupService.create(item);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: UUID4, @Body() itemGroup: ItemGroup) {
+    return this.itemgroupService.updateItemGroup(id, itemGroup);
   }
 
   @Post(':id')

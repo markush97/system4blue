@@ -49,6 +49,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AdminStorageDetailComponent,
     AdminStorageFormComponent,
   ],
-  providers: [AdminStorageService, AdminItemsService, DialogService],
+  providers: [AdminStorageService, DialogService],
+  exports: [AdminStorageSelectorComponent]
 })
 export class AdminStorageModule {}

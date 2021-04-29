@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs/operators';
 import { ItemGroupFormComponent } from './item-group-form/item-group-form.component';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +44,7 @@ export class AdminItemsService {
       filters
     );
 
-    params = params.set('relations', 'items');
+    params = params.set('relations', 'items,producer,seller,checkTemplate');
 
     return this.http
       .get<PaginationResult<ItemGroup>>(this.GROUPPATH, {
@@ -60,16 +61,16 @@ export class AdminItemsService {
       .toPromise();
   }
 
-  async loadItemGroups(
+  async loadItems(
     searchString?: string,
     page?: number,
     limit?: number,
     sortByField?: string,
     sortOrder: 'ASC' | 'DESC' = 'ASC',
     filters?: FilterParam<any>[]
-  ): Promise<PaginationResult<ItemGroup>> {
+  ): Promise<PaginationResult<Item>> {
     return this.http
-      .get<PaginationResult<ItemGroup>>(this.GROUPPATH, {
+      .get<PaginationResult<Item>>(this.PATH, {
         params: composeHttpPagingParams(
           searchString,
           page,
@@ -98,8 +99,7 @@ export class AdminItemsService {
       .subscribe();
   }
 
-  async editItemGroup(id: string) {
-    const itemGroup = await this.getItemGroup(id);
+  async editItemGroup(itemGroup: ItemGroup) {
 
     this.ref = this.dialogService.open(ItemGroupFormComponent, {
       header: 'Gegenstandsgruppe Information',
@@ -112,13 +112,37 @@ export class AdminItemsService {
     });
   }
 
-  async showItemGroup(id: string) {
-    await this.editItemGroup(id);
+  async showItemGroup(itemGroup: ItemGroup) {
+    await this.editItemGroup(itemGroup);
   }
 
   addItemGroup(): void {
     this.ref = this.dialogService.open(ItemGroupFormComponent, {
       header: 'Neue Itemgruppe anlegen',
+      width: '70%',
+      dismissableMask: true,
+      closeOnEscape: true,
+    });
+  }
+
+  addItem(itemGroup: ItemGroup): void {
+    this.ref = this.dialogService.open(ItemFormComponent, {
+      data: {
+        itemGroup: itemGroup
+      },
+      header: 'Neuen Gegenstand anlegen',
+      width: '70%',
+      dismissableMask: true,
+      closeOnEscape: true,
+    });
+  }
+
+  editItem(item: Item): void {
+    this.ref = this.dialogService.open(ItemFormComponent, {
+      data: {
+        item: item
+      },
+      header: 'Gegenstand bearbeiten',
       width: '70%',
       dismissableMask: true,
       closeOnEscape: true,
@@ -159,9 +183,42 @@ export class AdminItemsService {
       .subscribe();
   }
 
+  async createItem(item: Item): Promise<Item> {
+    return this.http
+      .post<Item>(this.PATH, item)
+      .pipe(
+        tap((item: Item) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Erfolg!',
+            detail: `${item.name} wurde angelegt`,
+            life: 3000,
+          });
+          this.ref.close();
+        })
+      )
+      .toPromise();
+  }
+
+  async updateItem(itemId: UUID4, item: Item) {
+    this.http
+      .put(`${this.PATH}/${itemId}`, item)
+      .pipe(
+        tap(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Erfolg!',
+            detail: `${item.name} wurde aktualisiert`,
+            life: 3000,
+          });
+          this.ref.close();
+        })
+      )
+      .subscribe();
+  }
+
   async getItemGroup(itemGroupId: UUID4): Promise<ItemGroup> {
     return this.http.get<ItemGroup>(`${this.GROUPPATH}/${itemGroupId}`).toPromise();
   }
-
 
 }

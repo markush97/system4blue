@@ -27,6 +27,10 @@ export class ItemGroupService {
     return this.itemGroupRepository.getOneById(id);
   }
 
+  async updateItemGroup(id: UUID4, itemGroup: ItemGroup) {
+    return this.itemGroupRepository.updateOneById(id, itemGroup);
+  }
+
   async createSubItem(id: UUID4, item: Item): Promise<ItemGroup> {
     const itemGroup = await this.itemGroupRepository.getOneById(id);
 

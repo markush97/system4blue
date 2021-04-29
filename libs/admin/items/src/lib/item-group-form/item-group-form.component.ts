@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   CheckTemplate,
   ItemGroup,
@@ -59,7 +59,7 @@ export class ItemGroupFormComponent implements OnInit {
       .getTemplatesList()
       .then((data) => (this.templatePossibilites = data));
 
-    this.itemGroup = this.config.data?.partner;
+    this.itemGroup = this.config.data?.itemGroup;
     this.itemGroupForm = this.fb.group({
       name: [this.itemGroup?.name],
       description: [this.itemGroup?.description],
@@ -70,14 +70,14 @@ export class ItemGroupFormComponent implements OnInit {
 
       defaultLifespan: [this.itemGroup?.defaultLifespan],
 
-      seller: [this.itemGroup?.seller],
-      producer: [this.itemGroup?.producer],
+      seller: [this.itemGroup?.seller?.id],
+      producer: [this.itemGroup?.producer?.id],
 
       pricePerUnit: [this.itemGroup?.pricePerUnit],
 
-      checkTemplate: [this.itemGroup?.checkTemplate],
+      checkTemplate: [this.itemGroup?.checkTemplate?.id],
 
-      timeRange: [this.timeRanges[0]]
+      timeRange: ['1'],
     });
   }
 
@@ -88,17 +88,16 @@ export class ItemGroupFormComponent implements OnInit {
         defaultLifespan:
           this.itemGroupForm.controls['defaultLifespan'].value *
           this.itemGroupForm.controls['timeRange'].value,
+        timeRange: undefined,
       });
     } else {
-      await this.itemService.updateItemGroup(
-        this.itemGroup.id,
-        {
-          ...this.itemGroupForm.value,
-          defaultLifespan:
-            this.itemGroupForm.controls['defaultLifespan'].value *
-            this.itemGroupForm.controls['timeRange'].value,
-        }
-      );
+      await this.itemService.updateItemGroup(this.itemGroup.id, {
+        ...this.itemGroupForm.value,
+        defaultLifespan:
+          this.itemGroupForm.controls['defaultLifespan'].value *
+          this.itemGroupForm.controls['timeRange'].value,
+        timeRange: undefined,
+      });
     }
   }
 

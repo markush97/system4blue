@@ -15,7 +15,16 @@ export class ItemsListComponent implements OnInit {
 
   loading = true;
 
-  constructor(private readonly itemGroupService: AdminItemsService) {}
+  states = [
+    {label: 'Aktiv', code: 0},
+    {label:'Beschädigt', code: 1},
+    {label:'Verborgt', code: 2},
+    {label:'Ausgeschieden', code: 3},
+    {label:'Reserve', code: 4},
+    {label:'Unbekannt', code: 5}
+  ]
+
+  constructor(private readonly itemService: AdminItemsService) {}
 
   ngOnInit(): void {
     this.loadGroups();
@@ -23,10 +32,18 @@ export class ItemsListComponent implements OnInit {
 
   loadGroups(event?: LazyLoadEvent) {
     this.loading = true;
-    this.itemGroupService.loadItemGroupWithItems().then((res) => {
+    this.itemService.loadItemGroupWithItems().then((res) => {
       this.itemGroups = res.data;
       this.totalRecords = res.total;
       this.loading = false;
     });
+  }
+
+  addItem(itemGroup: ItemGroup) {
+    this.itemService.addItem(itemGroup);
+  }
+
+  updateItemGroup(itemGroup: ItemGroup) {
+    this.itemService.editItemGroup(itemGroup);
   }
 }

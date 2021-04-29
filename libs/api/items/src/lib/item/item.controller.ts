@@ -3,7 +3,7 @@ import { CheckResult, Item, PaginationResult, QueryParams } from '@system4blue/a
 import { UUID4 } from '@system4blue/types';
 import { ItemService } from './item.service';
 
-@Controller('item')
+@Controller('items')
 export class ItemController {
   constructor(private itemService: ItemService) {}
 
