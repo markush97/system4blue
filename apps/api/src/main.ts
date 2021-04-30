@@ -11,6 +11,8 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
 
+  app.enableCors({origin: '*'});
+
   const config = new DocumentBuilder()
     .setTitle('System4Blue - API')
     .setDescription('The system4blue API description')
