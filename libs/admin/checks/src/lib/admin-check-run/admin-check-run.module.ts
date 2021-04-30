@@ -15,10 +15,10 @@ import { ChipsModule } from 'primeng/chips';
 import { CheckRunFormComponent } from './check-run-form/check-run-form.component';
 import { AdminChecksRunService } from './admin-checks-run.service';
 import { AdminCheckRunComponent } from './admin-check-run/admin-check-run.component';
-import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
-import {CheckboxModule} from 'primeng/checkbox';
-import {InputMaskModule} from 'primeng/inputmask';
-
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputMaskModule } from 'primeng/inputmask';
+import { EntityTableModule } from '@system4blue/components';
 
 @NgModule({
   declarations: [CheckRunFormComponent, AdminCheckRunComponent],
@@ -38,9 +38,10 @@ import {InputMaskModule} from 'primeng/inputmask';
     ChipsModule,
     TriStateCheckboxModule,
     CheckboxModule,
-    InputMaskModule
+    InputMaskModule,
+    EntityTableModule,
   ],
   providers: [AdminChecksRunService, DialogService],
-  exports: [AdminCheckRunComponent]
+  exports: [AdminCheckRunComponent],
 })
-export class AdminCheckRunModule { }
+export class AdminCheckRunModule {}

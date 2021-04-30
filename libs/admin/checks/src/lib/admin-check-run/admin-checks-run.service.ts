@@ -1,16 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CheckRun } from '@system4blue/api-interfaces';
-import {  MessageService } from 'primeng/api';
+import {
+  CheckRun,
+  FilterParam,
+  PaginationResult,
+} from '@system4blue/api-interfaces';
+import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { UUID4 } from '@system4blue/types';
 import { CheckRunFormComponent } from './check-run-form/check-run-form.component';
+import {
+  composeHttpPagingParams,
+  EntityTableDataSource,
+} from '@system4blue/components';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminChecksRunService {
+export class AdminChecksRunService implements EntityTableDataSource {
   private readonly PATH = '/api/checks/runs';
 
   private ref?: DynamicDialogRef;
@@ -20,7 +28,6 @@ export class AdminChecksRunService {
     private readonly dialogService: DialogService,
     private readonly messageService: MessageService
   ) {}
-
 
   addRun(): void {
     this.dialogService.open(CheckRunFormComponent, {
@@ -41,9 +48,7 @@ export class AdminChecksRunService {
     });
   }
 
-  async createCheckRun(
-    run: CheckRun
-  ): Promise<CheckRun> {
+  async createCheckRun(run: CheckRun): Promise<CheckRun> {
     return this.http
       .post<CheckRun>(this.PATH, run)
       .pipe<CheckRun>(
@@ -75,5 +80,58 @@ export class AdminChecksRunService {
         })
       )
       .subscribe();
+  }
+
+  deleteEntity(id: string): void {
+    throw new Error('Method not implemented.');
+  }
+  editEntity(id: string): void {
+    throw new Error('Method not implemented.');
+  }
+  showEntity(id: string): void {
+    window.open(`http://system4.blue:3333/api/checks/runs/${id}/pdf`, '_blank');
+  }
+  addEntity(): void {
+    this.addRun();
+  }
+
+  async loadEntites(
+    searchString?: string,
+    page?: number,
+    limit?: number,
+    sortByField?: string,
+    sortOrder: 'ASC' | 'DESC' = 'ASC',
+    filters?: FilterParam<any>[]
+  ): Promise<PaginationResult<CheckRun>> {
+    let params = composeHttpPagingParams(
+      searchString,
+      page,
+      limit,
+      sortByField,
+      sortOrder,
+      filters
+    );
+
+    params = params.set('relations', 'template,checker');
+
+    return this.http
+      .get<PaginationResult<any>>(this.PATH, {
+        params,
+      })
+      .pipe(
+        map((value) => {
+          value.data = value.data.map((check) => {
+            if (check.checker)
+              check.checker = `${check.checker.lastName} (${check.checker.memberId})`;
+
+            if (check.template) check.template = check.template.name;
+
+            return check;
+          });
+
+          return value;
+        })
+      )
+      .toPromise();
   }
 }
