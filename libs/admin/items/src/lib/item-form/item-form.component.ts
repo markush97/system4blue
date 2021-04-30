@@ -101,6 +101,7 @@ export class ItemFormComponent implements OnInit {
         producer: this.itemGroup.producer?.id,
         seller: this.itemGroup.seller?.id,
         state: ItemState.ACTIVE,
+        checkTemplate: this.itemGroup?.checkTemplate
       };
 
       this.itemForm.patchValue(item);

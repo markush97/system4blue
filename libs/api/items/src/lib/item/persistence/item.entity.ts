@@ -1,5 +1,5 @@
-import { CheckResult, Item, ItemGroup, Partner, StorageContainer } from '@system4blue/api-interfaces';
-import { CheckResultEntity } from '@system4blue/api/checks';
+import { CheckResult, CheckTemplate, Item, ItemGroup, Partner, StorageContainer } from '@system4blue/api-interfaces';
+import { CheckResultEntity, CheckTemplateEntity } from '@system4blue/api/checks';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, UpdateDateColumn } from 'typeorm';
 import { StorageContainerEntity } from '@system4blue/api/storage';
 import { ItemState } from '@system4blue/api-interfaces';
@@ -41,6 +41,9 @@ export abstract class ItemEntity implements Item {
 
   @ManyToOne(() => ItemGroupEntity, group => group.items)
   itemGroup?: ItemGroup;
+
+  @ManyToOne(() => CheckTemplateEntity)
+  checkTemplate?: CheckTemplate;
 
   @OneToMany(() => CheckResultEntity, result => result.item)
   checkResults: CheckResult[];

@@ -1,0 +1,100 @@
+<div [formGroup]="runForm" class="p-fluid p-formgrid p-grid">
+  <div *ngIf="templatePossibilites" class="p-field p-col-12 p-md-4">
+    <label for="seller">Prüfvorlage:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="template"
+      [options]="templatePossibilites"
+      placeholder="Prüfvorlage"
+      formControlName="template"
+      optionLabel="name"
+      optionValue="id"
+      (onChange)="loadTestableItems()"
+    ></p-dropdown>
+  </div>
+  <div class="p-field p-col-12">
+    <label for="note">Notizen</label>
+    <textarea
+      id="note"
+      formControlName="note"
+      type="text"
+      rows="4"
+      pInputTextarea
+    ></textarea>
+  </div>
+  <div *ngIf="memberPossibilities" class="p-field p-col-12 p-md-4">
+    <label for="responsible">Verantwortlicher:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="responsible"
+      [options]="memberPossibilities"
+      placeholder="Verantwortlicher"
+      formControlName="responsible"
+      optionLabel="lastName"
+      optionValue="id"
+    ></p-dropdown>
+  </div>
+  <div *ngIf="memberPossibilities" class="p-field p-col-12 p-md-4">
+    <label for="checker">Prüfer:</label>
+    <p-dropdown
+      appendTo="body"
+      [filter]="true"
+      inputId="checker"
+      [options]="memberPossibilities"
+      placeholder="Prüfer"
+      formControlName="checker"
+      optionLabel="lastName"
+      optionValue="id"
+    ></p-dropdown>
+  </div>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="date">Prüfungsdatum</label>
+    <p-inputMask id="date" type="text" formControlName="date" mask="9999-99-99" placeholder="YYYY-MM-TT"></p-inputMask>
+  </div>
+  <div class="p-field p-col-12 p-md-12">
+    <h2>Zu testende Gegenstände:</h2>
+  </div>
+  <div *ngIf="selectedTemplate" class="p-field p-col-12 p-md-12">
+    <table style="text-align: center; width: 100%;">
+      <tr>
+        <th>Geprüft</th>
+        <th>Name</th>
+        <th>Kürzel</th>
+        <ng-container *ngFor="let check of selectedTemplate.checks">
+          <th>{{ check }}</th>
+        </ng-container>
+      </tr>
+      <ng-container *ngIf="testAbleItems">
+      <tr *ngFor="let item of testAbleItems">
+        <p-checkbox (click)="toggleItem(item)"></p-checkbox>
+        <td>{{ item.name }}</td>
+        <td>{{ item.externalId }}</td>
+        <td *ngFor="let check of selectedTemplate.checks"><p-triStateCheckbox (onChange)="toggleCheckMark($event.value, item, check)" [disabled]="!checks[item.id]?.enabled"></p-triStateCheckbox></td>
+      </tr>
+    </ng-container>
+    </table>
+  </div>
+
+  <div class="p-d-flex p-jc-end">
+    <button
+      class="p-button-raised p-mr-2 p-mr"
+      pRipple
+      pButton
+      type="button"
+      label="Speichern"
+      (click)="save()"
+      icon="pi pi-check"
+    ></button>
+    <button
+      class="p-button-danger"
+      pRipple
+      pButton
+      type="button"
+      label="Abbrechen"
+      (click)="close()"
+      icon="pi pi-times"
+    ></button>
+  </div>
+</div>

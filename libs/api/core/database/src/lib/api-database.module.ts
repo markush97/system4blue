@@ -24,9 +24,9 @@ import { StorageContainerEntity } from '@system4blue/api/storage';
       type: 'mariadb',
       host: 'localhost',
       port: 3306,
-      username: 'system4blue',
-      password: 'system4blue',
-      database: 'system4blue',
+      username: 'systemblue',
+      password: 'systemblue',
+      database: 'systemblue',
       entities: [
         ItemEntity,
         ItemGroupEntity,

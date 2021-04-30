@@ -22,7 +22,7 @@ export class CheckRunEntity implements CheckRun {
   @ManyToOne(() => CheckTemplateEntity)
   template: CheckTemplate;
 
-  @OneToMany(() => CheckResultEntity, result => result.checkRun)
+  @OneToMany(() => CheckResultEntity, result => result.checkRun, { cascade: true })
   checkResults: CheckResult[];
 
   @Column({nullable: true})
