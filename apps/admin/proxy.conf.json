@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://system4.blue:3333",
+    "target": "http://localhost:3333",
     "secure": false
   }
 }
