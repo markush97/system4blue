@@ -26,8 +26,6 @@ export class ItemFormComponent implements OnInit {
   item?: Item;
   itemGroup?: ItemGroup;
 
-  storageLocation?: StorageContainer;
-
   unitPossibilites: Unit[] = [
     Unit.CAN,
     Unit.KG,
@@ -76,6 +74,7 @@ export class ItemFormComponent implements OnInit {
       producedAt: [],
 
       price: [],
+      storageLocation: []
     });
   }
 
@@ -124,5 +123,9 @@ export class ItemFormComponent implements OnInit {
 
   async close() {
     this.ref.close();
+  }
+
+  selectContainer(container: StorageContainer) {
+    this.itemForm.patchValue({storageLocation: container.id});
   }
 }

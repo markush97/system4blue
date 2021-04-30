@@ -12,7 +12,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { AdminStorageDetailComponent } from './admin-storage-detail/admin-storage-detail.component';
 import { CardModule } from 'primeng/card';
 import { FieldsetModule } from 'primeng/fieldset';
-import { AdminItemsService } from '@system4blue/admin/items';
 import { TableModule } from 'primeng/table';
 import { AdminStorageFormComponent } from './admin-storage-form/admin-storage-form.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -38,7 +37,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ReactiveFormsModule,
     ConfirmDialogModule,
     RouterModule.forChild([
-      { path: '', pathMatch: 'full', component: AdminStorageComponent },
+      { path: 'storage', pathMatch: 'full', component: AdminStorageComponent },
     ]),
     TreeModule,
     DynamicDialogModule,

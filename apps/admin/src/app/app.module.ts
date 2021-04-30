@@ -12,6 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { HeaderModule } from '@system4blue/components';
+import { AdminStorageModule } from '@system4blue-admin-storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { HeaderModule } from '@system4blue/components';
     BrowserAnimationsModule,
     ToastModule,
     ConfirmDialogModule,
+    AdminStorageModule,
     RouterModule.forRoot(
       [
         { path: 'dashboard', children: adminDashboardRoutes },
@@ -51,13 +53,13 @@ import { HeaderModule } from '@system4blue/components';
               (module) => module.AdminPartnersModule
             ),
         },
-        {
+        /*{
           path: 'storage',
           loadChildren: () =>
             import('@system4blue-admin-storage').then(
               (module) => module.AdminStorageModule
             ),
-        },
+        },*/
         { path: '*', redirectTo: 'dashboard', pathMatch: 'full' },
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       ],

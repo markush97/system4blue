@@ -43,6 +43,7 @@ import { AdminStorageModule } from '@system4blue-admin-storage';
     InputTextareaModule,
     DropdownModule,
     AutoCompleteModule,
+    AdminStorageModule,
   ],
   declarations: [
     AdminItemsComponent,
