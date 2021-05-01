@@ -64,14 +64,14 @@ export class CheckController {
     return this.checkTemplateService.getMany(queryParams);
   }
 
-  @Post('templates')
+  @Post('template')
   async createCheckTemplate(
     @Body() check: CheckTemplate
   ): Promise<CheckTemplate> {
     return this.checkTemplateService.create(check);
   }
 
-  @Delete('templates/:id')
+  @Delete('template/:id')
   async deleteCheckTemplate(@Param('id') id: UUID4): Promise<void> {
     return this.checkTemplateService.delete(id);
   }

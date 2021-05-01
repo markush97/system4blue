@@ -1,12 +1,74 @@
-<p-sidebar
-  [styleClass]="
-    sidenavExpanded ? 'sidenav sidenav-expanded' : 'sidenav sidenav-collapsed'
-  "
-  [modal]="false"
-  [dismissible]="false"
-  [closeOnEscape]="false"
-  [visible]="true"
-  [showCloseIcon]="false"
+<div
+  class="header p-shadow-6"
+  [ngStyle]="{ backgroundColor: 'var(--primary-color)' }"
 >
-  <button (click)="sidenavExpanded = !sidenavExpanded">Test</button>
-</p-sidebar>
+  <div class="logobox"><img src="assets/main_text.png" /></div>
+</div>
+<div class="container">
+  <div class="sidenav sidenav-expanded p-shadow-6">
+    <div class="section">
+      <div class="p-text-bold p-mt-5">Gegenstände</div>
+      <div
+        class="menu"
+        href="#"
+        [routerLink]="['/items']"
+        routerLinkActive="router-link-active"
+      >
+        Gegenstände
+      </div>
+    </div>
+    <div class="section">
+      <div class="p-text-bold p-mt-5">Überprüfungen</div>
+      <div
+      class="menu"
+      href="#"
+      [routerLink]="['/checks/runs']"
+      routerLinkActive="router-link-active"
+    >
+      Prüfungsdurchgänge
+    </div>
+      <div
+        class="menu"
+        href="#"
+        [routerLink]="['/checks/templates']"
+        routerLinkActive="router-link-active"
+      >
+        Prüfungsvorlagen
+      </div>
+    </div>
+    <div class="section">
+      <div class="p-text-bold p-mt-5">Personen</div>
+      <div
+        class="menu"
+        href="#"
+        [routerLink]="['/members']"
+        routerLinkActive="router-link-active"
+      >
+        Mitglieder
+      </div>
+      <div
+        class="menu"
+        href="#"
+        [routerLink]="['/partners']"
+        routerLinkActive="router-link-active"
+      >
+        Firmen / Verkäufer
+      </div>
+    </div>
+    <div class="section">
+      <div class="p-text-bold p-mt-5">Inventar</div>
+      <div
+        class="menu"
+        href="#"
+        [routerLink]="['/storage']"
+        routerLinkActive="router-link-active"
+      >
+        Lager
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

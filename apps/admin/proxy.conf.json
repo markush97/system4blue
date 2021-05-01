@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://syste4.blue:3333",
+    "target": "http://49.12.77.90:3333",
     "secure": false
   }
 }

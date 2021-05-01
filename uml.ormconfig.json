@@ -2,9 +2,9 @@
   "type": "mariadb",
   "host": "localhost",
   "port": 3306,
-  "username": "system4blue",
-  "password": "system4blue",
-  "database": "system4blue",
+  "username": "systemblue",
+  "password": "systemblue",
+  "database": "systemblue",
   "syncronize": true,
   "autoLoadEntities": true,
   "entities": ["libs/api/*/src/lib/**/persistence/*.entity.ts", "libs/api/*/src/lib/**/persistence/*.entity.js"]

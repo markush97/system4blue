@@ -22,6 +22,7 @@ import { ItemsListComponent } from './items-list/items-list.component';
 import { BadgeModule } from 'primeng/badge';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { AdminStorageModule } from '@system4blue-admin-storage';
+import { AdminChecksTemplateModule } from 'libs/admin/checks/src/lib/admin-checks-template/admin-checks-template.module';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { AdminStorageModule } from '@system4blue-admin-storage';
     DropdownModule,
     AutoCompleteModule,
     AdminStorageModule,
+    AdminChecksTemplateModule
   ],
   declarations: [
     AdminItemsComponent,
@@ -55,7 +57,7 @@ import { AdminStorageModule } from '@system4blue-admin-storage';
     AdminItemsService,
     DialogService,
     AdminPartnersService,
-    AdminChecksTemplateService,
+
   ],
   exports: [],
 })

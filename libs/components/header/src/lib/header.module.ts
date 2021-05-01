@@ -4,10 +4,10 @@ import { HeaderComponent } from './header/header.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import {ToolbarModule} from 'primeng/toolbar';
-import {SidebarModule} from 'primeng/sidebar';
+
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, InputTextModule, ToolbarModule, SidebarModule],
+  imports: [CommonModule, ButtonModule, InputTextModule, ToolbarModule],
   declarations: [HeaderComponent],
   exports: [HeaderComponent]
 })

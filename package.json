@@ -37,7 +37,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "api:uml": "ts-node ./node_modules/.bin/typeorm-uml ormconfig.json -d=test.svg"
+    "uml:api": "ts-node ./node_modules/.bin/typeorm-uml uml.ormconfig.json -d=test.svg"
   },
   "private": true,
   "dependencies": {

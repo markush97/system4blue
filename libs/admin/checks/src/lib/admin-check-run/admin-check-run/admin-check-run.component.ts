@@ -22,7 +22,4 @@ export class AdminCheckRunComponent {
     ]
   }
 
-  test() {
-    this.service.addRun();
-  }
 }
