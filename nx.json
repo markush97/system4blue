@@ -18,7 +18,13 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "compodoc"
+        ]
       }
     }
   },
@@ -28,7 +34,9 @@
     },
     "web-e2e": {
       "tags": [],
-      "implicitDependencies": ["web"]
+      "implicitDependencies": [
+        "web"
+      ]
     },
     "api": {
       "tags": []
@@ -53,7 +61,9 @@
     },
     "admin-e2e": {
       "tags": [],
-      "implicitDependencies": ["admin"]
+      "implicitDependencies": [
+        "admin"
+      ]
     },
     "admin-dashboard": {
       "tags": []

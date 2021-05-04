@@ -123,6 +123,18 @@
           "options": {
             "syncVersions": false
           }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "apps\\web\\tsconfig.app.json",
+            "outputPath": "dist\\compodoc\\web"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
         }
       }
     },
@@ -205,6 +217,18 @@
           "builder": "@jscutlery/semver:version",
           "options": {
             "syncVersions": false
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "apps\\api\\tsconfig.app.json",
+            "outputPath": "dist\\compodoc\\api"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
           }
         }
       }
@@ -392,6 +416,18 @@
           "builder": "@jscutlery/semver:version",
           "options": {
             "syncVersions": false
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "apps\\admin\\tsconfig.app.json",
+            "outputPath": "dist\\compodoc\\admin"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
           }
         }
       }
