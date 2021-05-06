@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
@@ -12,6 +12,13 @@ async function bootstrap() {
   const port = process.env.PORT || 3333;
 
   app.enableCors({origin: '*'});
+
+  app.useGlobalPipes(new ValidationPipe({
+    enableDebugMessages: process.env.NODE_ENV === 'development',
+    forbidNonWhitelisted: true,
+    whitelist: true,
+    transform: true
+  }));
 
   const config = new DocumentBuilder()
     .setTitle('System4Blue - API')
