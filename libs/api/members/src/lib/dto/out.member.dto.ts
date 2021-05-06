@@ -1,6 +1,7 @@
+import { Member } from "@system4blue/api-interfaces";
 import { UUID4 } from "@system4blue/types";
 
-export interface Member {
+export class MemberDto implements Member {
   id?: UUID4;
 
   firstName?: string;
@@ -18,4 +19,8 @@ export interface Member {
 
   createdAt?: string;
   updatedAt?: string;
+
+  constructor(member: Member) {
+    Object.assign(this, member);
+  }
 }

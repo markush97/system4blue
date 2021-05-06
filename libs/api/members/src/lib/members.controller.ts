@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, Query, UseInterceptors } from '@nestjs/common';
 import { MembersService } from './members.service';
 import { Member, PaginationResult, QueryParams } from '@system4blue/api-interfaces'
 import { UUID4 } from '@system4blue/types';
