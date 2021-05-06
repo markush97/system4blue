@@ -1,0 +1,38 @@
+# Versioning and metadata
+.git
+.gitignore
+.dockerignore
+*/*/.gitkeep
+
+# Build dependencies
+dist
+node_modules
+coverage
+npm-debug.log
+
+# Environment (contains sensitive data)
+.env
+
+# Documentation
+README.md
+CONTRIBUTING.md
+COPYING.md
+
+# Editor
+.editorconfig
+.vscode
+.husky
+
+# Files not required for production
+
+tslint.json
+nodemon.json
+.env.example
+.prettierrc
+.prettierignore
+commitlint.config.js
+uml.ormconfig.json
+
+# Docker
+Dockerfile*
+docker-compose*

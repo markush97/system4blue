@@ -47,6 +47,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
+            "generatePackageJson": true,
             "assets": ["apps/api/src/assets"]
           },
           "configurations": {
@@ -204,6 +205,7 @@
             "outputPath": "dist/apps/admin",
             "index": "apps/admin/src/index.html",
             "main": "apps/admin/src/main.ts",
+            "generatePackageJson": true,
             "polyfills": "apps/admin/src/polyfills.ts",
             "tsConfig": "apps/admin/tsconfig.app.json",
             "aot": true,
