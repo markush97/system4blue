@@ -1,7 +1,7 @@
 import { Member } from "@system4blue/api-interfaces";
 import { UUID4 } from "@system4blue/types";
 
-export class MemberDto implements Member {
+export class OutMemberDto implements Member {
   id?: UUID4;
 
   firstName?: string;

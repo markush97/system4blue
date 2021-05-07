@@ -1,28 +1,33 @@
-import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, Query, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { MembersService } from './members.service';
 import { Member, PaginationResult, QueryParams } from '@system4blue/api-interfaces'
 import { UUID4 } from '@system4blue/types';
+import { PartialUpdate } from '@system4blue/api/validation';
+import { MemberDto } from './dto/member.dto';
+import { OutMemberDto } from './dto/out.member.dto';
+
 @Controller('members')
 export class MembersController {
   constructor(private membersService: MembersService) {}
 
     @Post()
-    async create(@Body() member: Member): Promise<Member> {
+    async create(@Body() member: MemberDto): Promise<OutMemberDto> {
       return this.membersService.create(member);
     }
 
     @Get(':id')
-    async getById(@Param('id') id: UUID4): Promise<Member> {
+    async getById(@Param('id') id: UUID4): Promise<OutMemberDto> {
       return this.membersService.getById(id);
     }
 
     @Get()
-    async getMany(@Query() queryParams: QueryParams<Member>): Promise<PaginationResult<Member>> {
+    async getMany(@Query() queryParams: QueryParams<Member>): Promise<PaginationResult<OutMemberDto>> {
       return this.membersService.getMany(queryParams);
     }
 
     @Put(':id')
-    async update(@Param('id') id: UUID4, @Body() member: Member): Promise<void> {
+    @PartialUpdate()
+    async update(@Param('id') id: UUID4, @Body() member: MemberDto): Promise<void> {
       return this.membersService.update(id, member)
     }
 
