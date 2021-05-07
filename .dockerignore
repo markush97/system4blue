@@ -3,6 +3,7 @@
 .gitignore
 .dockerignore
 */*/.gitkeep
+.github
 
 # Build dependencies
 dist
