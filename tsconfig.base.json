@@ -32,7 +32,8 @@
       "@system4blue/admin/members": ["libs/admin/members/src/index.ts"],
       "@system4blue/admin/partners": ["libs/admin/partners/src/index.ts"],
       "@system4blue/components": ["libs/components/index.ts"],
-      "@system4blue-admin-storage": ["libs/admin/storage/src/index.ts"]
+      "@system4blue-admin-storage": ["libs/admin/storage/src/index.ts"],
+      "@system4blue/api/validation": ["libs/api/validation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

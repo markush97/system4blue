@@ -15,5 +15,6 @@ module.exports = {
     '<rootDir>/libs/api/crud',
     '<rootDir>/libs/admin/members',
     '<rootDir>/libs/admin/partners',
+    '<rootDir>/libs/api/validation',
   ],
 };

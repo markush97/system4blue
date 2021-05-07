@@ -13,12 +13,7 @@ async function bootstrap() {
 
   app.enableCors({origin: '*'});
 
-  app.useGlobalPipes(new ValidationPipe({
-    enableDebugMessages: process.env.NODE_ENV === 'development',
-    forbidNonWhitelisted: true,
-    whitelist: true,
-    transform: true
-  }));
+  app.useGlobalPipes(new ValidationPipe());
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 

@@ -1,15 +1,20 @@
-/* eslint-disable @typescript-eslint/ban-types */
-export interface QueryParams<T extends object = object> {
-  //fields?: (keyof T)[];
-  //filter?: FilterParam<T>[];
-  //or?: FilterParam<T>[];
-  //order?: orderParam<T>[];
-  //relations?: string[];
+import { Type } from 'class-transformer';
 
-  fields?: string;
-  filters?: string;
-  order?: string;
-  relations?: string;
+
+/* eslint-disable @typescript-eslint/ban-types */
+export class QueryParams<T extends object = object> {
+
+  @Type(() => String)
+  fields?: (keyof T & string)[];
+
+  @Type(() => String)
+  filters?: FilterParam<T>[];
+
+  order?: OrderParam<T>[];
+
+  @Type(() => String)
+  relations?: string[];
+
   limit?: number;
   page?: number;
   search?: string;
