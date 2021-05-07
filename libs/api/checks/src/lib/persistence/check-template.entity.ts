@@ -5,20 +5,20 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 export class CheckTemplateEntity implements CheckTemplate {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column()
-  name: string;
+  name?: string;
 
   @Column({type: 'simple-array', default: ' '})
-  checks: string[];
+  checks?: string[];
 
   @Column({nullable: true})
   description?: string;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 }

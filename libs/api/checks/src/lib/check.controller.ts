@@ -21,6 +21,9 @@ import { CheckPdfService } from './check-pdf.service';
 import { CheckResultService } from './check-result.service';
 import { CheckRunService } from './check-run.service';
 import { CheckTemplateService } from './check-template.service';
+import { CheckResultDto } from './dto/check-result.dto';
+import { CheckRunDto } from './dto/check-run.dto';
+import { CheckTemplateDto } from './dto/check-template.dto';
 @Controller('checks')
 export class CheckController {
   constructor(
@@ -43,7 +46,7 @@ export class CheckController {
   }
 
   @Post('results')
-  async createCheckResult(@Body() check: CheckResult): Promise<CheckResult> {
+  async createCheckResult(@Body() check: CheckResultDto): Promise<CheckResult> {
     return this.checkResultService.create(check);
   }
 
@@ -66,7 +69,7 @@ export class CheckController {
 
   @Post('template')
   async createCheckTemplate(
-    @Body() check: CheckTemplate
+    @Body() check: CheckTemplateDto
   ): Promise<CheckTemplate> {
     return this.checkTemplateService.create(check);
   }
@@ -90,7 +93,7 @@ export class CheckController {
 
   @Post('runs')
   async createRun(
-    @Body() checkRun: CheckRun
+    @Body() checkRun: CheckRunDto
   ): Promise<CheckRun> {
     return this.checkRunService.create(checkRun);
   }

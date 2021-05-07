@@ -8,30 +8,30 @@ import { CheckResultEntity } from './check-result.entity';
 export class CheckRunEntity implements CheckRun {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @ManyToOne(() => MemberEntity)
-  checker: Member;
+  checker?: Member;
 
   @ManyToOne(() => MemberEntity)
-  responsible: Member;
+  responsible?: Member;
 
   @Column({type: 'date'})
-  date: string;
+  date?: string;
 
   @ManyToOne(() => CheckTemplateEntity)
-  template: CheckTemplate;
+  template?: CheckTemplate;
 
   @OneToMany(() => CheckResultEntity, result => result.checkRun, { cascade: true })
-  checkResults: CheckResult[];
+  checkResults?: CheckResult[];
 
   @Column({nullable: true})
   note?: string;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 
 }

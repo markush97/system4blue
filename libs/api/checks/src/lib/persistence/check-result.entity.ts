@@ -7,13 +7,13 @@ import { CheckRunEntity } from './check-run.entity';
 @Entity()
 export class CheckResultEntity implements CheckResult {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column({ type: 'simple-array', default: '' })
-  successfullChecks: string[];
+  successfullChecks?: string[];
 
   @Column({ type: 'simple-array', default: '' })
-  failedChecks: string[];
+  failedChecks?: string[];
 
   @ManyToOne(
     () => ItemEntity,
@@ -21,19 +21,19 @@ export class CheckResultEntity implements CheckResult {
     {eager: true}
   )
   @JoinColumn({ name: 'item_id' })
-  item: Item;
+  item?: Item;
 
   @ManyToOne(() => CheckRunEntity, run => run.checkResults)
   @JoinColumn({ name: 'checkrun_id' })
-  checkRun: CheckRun;
+  checkRun?: CheckRun;
 
   @Column({nullable: true})
   note?: string;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 
 }

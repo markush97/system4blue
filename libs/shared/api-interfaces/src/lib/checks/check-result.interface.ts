@@ -3,17 +3,17 @@ import { Item } from "../items";
 import { CheckRun } from "./check-run.interface";
 
 export interface CheckResult {
-  id: UUID4;
+  id?: UUID4;
 
-  successfullChecks: string[];
-  failedChecks: string[];
+  successfullChecks?: string[];
+  failedChecks?: string[];
 
-  item: Item;
+  item?: Item;
 
-  checkRun: CheckRun;
+  checkRun?: CheckRun;
 
   note?: string;
 
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

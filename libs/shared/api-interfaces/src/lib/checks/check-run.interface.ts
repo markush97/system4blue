@@ -5,21 +5,21 @@ import { CheckResult } from "./check-result.interface";
 import { CheckTemplate } from "./check-template.interface";
 
 export interface CheckRun {
-  id: UUID4;
+  id?: UUID4;
 
-  checker: Member;
+  checker?: Member;
 
-  responsible: Member;
+  responsible?: Member;
 
-  date: string;
+  date?: string;
 
-  template: CheckTemplate;
+  template?: CheckTemplate;
 
-  checkResults: CheckResult[];
+  checkResults?: CheckResult[];
 
   note?: string;
 
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 
 }
