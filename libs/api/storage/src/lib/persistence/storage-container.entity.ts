@@ -8,30 +8,30 @@ import {ItemEntity} from '@system4blue/api/items';
 export class StorageContainerEntity implements StorageContainer {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column({type: 'enum', enum: StorageType, default: StorageType.OTHER})
-  type: StorageType;
+  type?: StorageType;
 
   @Column({nullable: true})
   description?: string;
 
   @TreeChildren()
-  subContainers: StorageContainer[];
+  subContainers?: StorageContainer[];
 
   @TreeParent()
-  parentContainer: StorageContainer | "root";
+  parentContainer?: StorageContainer | "root";
 
   @OneToMany(() => ItemEntity, item => item.storageLocation)
-  items: Item[];
+  items?: Item[];
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column()
-  name: string;
+  name?: string;
 
 }

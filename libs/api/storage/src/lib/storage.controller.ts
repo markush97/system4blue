@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { StorageContainer } from '@system4blue/api-interfaces';
+import { PartialUpdate } from '@system4blue/api/validation';
 import { UUID4 } from '@system4blue/types';
+import { StorageContainerOutDto } from './dto/out.storage-container.dto';
 import { StorageService } from './storage.service';
 
 @Controller('storage')
@@ -18,6 +20,7 @@ export class StorageController {
   }
 
   @Put(':id')
+  @PartialUpdate()
   async updateContainer(@Body() container: StorageContainer, @Param('id') containerId: UUID4) {
     return this.storageService.updateContainer(containerId, container)
   }
@@ -34,7 +37,7 @@ export class StorageController {
 
   @Get(':id')
   async getContainer(@Param('id') containerId: UUID4): Promise<StorageContainer> {
-    return this.storageService.getByIdWithAncestors(containerId);
+    return new StorageContainerOutDto(await this.storageService.getByIdWithAncestors(containerId));
   }
 
   @Delete(':id')
