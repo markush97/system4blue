@@ -5,8 +5,8 @@ import { Unit } from '../unit.enum';
 import { Item } from './item.interface';
 
 export interface ItemGroup {
-  id: UUID4;
-  name: string;
+  id?: UUID4;
+  name?: string;
 
   description?: string;
 
@@ -25,7 +25,7 @@ export interface ItemGroup {
 
   items?: Item[];
 
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 
 }

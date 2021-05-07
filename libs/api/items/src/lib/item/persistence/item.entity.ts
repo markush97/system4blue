@@ -7,16 +7,15 @@ import { PartnerEntity } from '@system4blue/api/partners';
 import { ItemGroupEntity } from '../../itemgroup/persistence/itemgroup.entity';
 
 @Entity()
-@TableInheritance({column: { type: 'varchar', name: 'type'}})
 export abstract class ItemEntity implements Item {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column()
-  externalId: string;
+  externalId?: string;
 
   @Column()
-  name: string;
+  name?: string;
 
   @Column({nullable: true})
   description?: string;
@@ -46,14 +45,14 @@ export abstract class ItemEntity implements Item {
   checkTemplate?: CheckTemplate;
 
   @OneToMany(() => CheckResultEntity, result => result.item)
-  checkResults: CheckResult[];
+  checkResults?: CheckResult[];
 
   @Column({type: 'enum', enum: ItemState, default: ItemState.UNKNOWN})
-  state: ItemState;
+  state?: ItemState;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 }

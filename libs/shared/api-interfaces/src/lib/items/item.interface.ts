@@ -6,10 +6,10 @@ import { ItemState } from './item-state.enum';
 import { Partner } from '../partners/partner.interface';
 
 export interface Item {
-  id: UUID4;
-  externalId: string;
+  id?: UUID4;
+  externalId?: string;
 
-  name: string;
+  name?: string;
 
   description?: string;
 
@@ -25,10 +25,12 @@ export interface Item {
   storageLocation?: StorageContainer;
 
   itemGroup?: ItemGroup;
-  checkResults: CheckResult[];
+  checkResults?: CheckResult[];
 
-  state: ItemState;
+  state?: ItemState;
 
-  createdAt: string;
-  updatedAt: string;
+  amount?: number;
+
+  createdAt?: string;
+  updatedAt?: string;
 }

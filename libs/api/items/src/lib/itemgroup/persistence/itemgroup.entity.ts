@@ -7,7 +7,7 @@ import { ItemEntity } from "../../item/persistence/item.entity";
 @Entity()
 export class ItemGroupEntity implements ItemGroup {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column({type: 'enum', enum: Unit, default: Unit.PIECE})
   unit?: Unit;
@@ -19,7 +19,7 @@ export class ItemGroupEntity implements ItemGroup {
   items?: Item[];
 
   @Column()
-  name: string;
+  name?: string;
 
   @Column({nullable: true})
   description?: string;
@@ -50,8 +50,8 @@ export class ItemGroupEntity implements ItemGroup {
   checkTemplate?: CheckTemplate;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 }
