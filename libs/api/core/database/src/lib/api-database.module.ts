@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   ItemEntity,
   ItemGroupEntity,
-  PieceItemEntity,
-  ContainerItemEntity,
 } from '@system4blue/api/items';
 import {
   CheckResultEntity,
@@ -33,8 +31,6 @@ import { StorageContainerEntity } from '@system4blue/api/storage';
         CheckRunEntity,
         CheckResultEntity,
         CheckTemplateEntity,
-        PieceItemEntity,
-        ContainerItemEntity,
         MemberEntity,
         PartnerEntity,
         StorageContainerEntity
