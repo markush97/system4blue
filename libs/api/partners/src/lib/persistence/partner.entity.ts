@@ -5,10 +5,10 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 export class PartnerEntity implements Partner {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column()
-  name: string;
+  name?: string;
 
   @Column({nullable: true})
   street?: string;
@@ -32,10 +32,10 @@ export class PartnerEntity implements Partner {
   webpage?: string;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({length: 1000, type: 'varchar', nullable: true})
   description?: string;

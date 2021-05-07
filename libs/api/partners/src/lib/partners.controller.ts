@@ -1,30 +1,52 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
-import { PaginationResult, Partner, QueryParams } from '@system4blue/api-interfaces';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
+import {
+  PaginationResult,
+  Partner,
+  QueryParams,
+} from '@system4blue/api-interfaces';
 import { UUID4 } from '@system4blue/types';
 import { PartnersService } from './partners.service';
+import { PartialUpdate } from '@system4blue/api/validation';
+import { OutPartnerDto } from './dto/out.partner';
+import { PartnerDto } from './dto/partner.dto';
 
 @Controller('partners')
 export class PartnersController {
   constructor(private partnersService: PartnersService) {}
 
   @Get(':id')
-  async getById(@Param('id') id: UUID4): Promise<Partner> {
+  async getById(@Param('id') id: UUID4): Promise<OutPartnerDto> {
     return this.partnersService.getById(id);
   }
 
   @Get()
-  async getMany(@Query() queryParams: QueryParams<Partner>): Promise<PaginationResult<Partner>> {
+  async getMany(
+    @Query() queryParams: QueryParams<Partner>
+  ): Promise<PaginationResult<OutPartnerDto>> {
     return this.partnersService.getMany(queryParams);
   }
 
   @Post()
-  async create(@Body() partner: Partner): Promise<Partner> {
+  async create(@Body() partner: PartnerDto): Promise<OutPartnerDto> {
     return this.partnersService.create(partner);
   }
 
   @Put(':id')
-  async update(@Param('id') id: UUID4, @Body() partner: Partner): Promise<void> {
-    return this.partnersService.update(id, partner)
+  @PartialUpdate()
+  async update(
+    @Param('id') id: UUID4,
+    @Body() partner: Partner
+  ): Promise<void> {
+    return this.partnersService.update(id, partner);
   }
 
   @Delete(':id')

@@ -14,8 +14,8 @@ export class MembersService {
     return this.memberRepository.getMany(parseFindManyParams(queryParams, searchAbleFields));
   }
 
-  async create(partner: Member): Promise<Member> {
-    return this.memberRepository.create(partner);
+  async create(member: Member): Promise<Member> {
+    return this.memberRepository.create(member);
   }
 
   async delete(id: UUID4): Promise<void> {

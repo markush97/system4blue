@@ -5,19 +5,19 @@ import { Member } from '@system4blue/api-interfaces';
 export class MemberEntity implements Member {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column()
-  firstName: string;
+  firstName?: string;
 
   @Column()
-  lastName: string;
+  lastName?: string;
 
   @Column({nullable: true})
   privateEmail?: string;
 
   @Column({unique: true})
-  memberId: string;
+  memberId?: string;
 
   @Column({nullable: true})
   street?: string;
@@ -29,16 +29,16 @@ export class MemberEntity implements Member {
   zip?: number;
 
   @Column({unique: true})
-  email: string;
+  email?: string;
 
   @Column({nullable: true})
   phone?: string;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: string;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: string;
 
 
 }

@@ -1,22 +1,25 @@
-import { UUID4 } from "@system4blue/types";
+import { Partner } from "@system4blue/api-interfaces";
 
-export interface Partner {
-  id?: UUID4;
-
+export class OutPartnerDto implements Partner {
   name?: string;
 
   street?: string;
+
   country?: string;
+
   zip?: number;
 
   contactPhone?: string;
+
   contactName?: string;
+
   contactEmail?: string;
 
   webpage?: string;
 
   description?: string;
 
-  createdAt?: string;
-  updatedAt?: string;
+  constructor(partner: Partner) {
+    Object.assign(this, partner);
+  }
 }
