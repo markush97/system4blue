@@ -21,12 +21,12 @@ export function parseFindManyParams<Entity extends ObjectLiteral>(
 ): FindManyOptions<Entity> {
 
   const filter: FindManyOptions<Entity> = {
-    order: parseorderParams(queryParams.order?.split(',')),
-    select: queryParams.fields?.split(','),
-    relations: queryParams.relations?.split(','),
+    order: parseorderParams(queryParams.order),
+    select: queryParams.fields,
+    relations: queryParams.relations,
     skip: queryParams.page * queryParams.limit,
     take: queryParams.limit,
-    where: parseSearchParam(searchableFields, queryParams.search, parseFilterParams(queryParams.filters?.split(','))),
+    where: parseSearchParam(searchableFields, queryParams.search, parseFilterParams(queryParams.filters)),
   };
 
   return filter;
