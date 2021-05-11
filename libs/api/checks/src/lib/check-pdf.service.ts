@@ -26,7 +26,7 @@ export class CheckPdfService {
 
     const template = handlebars.compile(content);
     const html = template({
-      qr: await this.generateQR(`http://system4.blue/checks/runs/${checkRun.id}`),
+      qr: await this.generateQR(`${process.env.API_URL}/checks/runs/${checkRun.id}`),
       run: checkRun,
       logo: this.loadLogo(),
       template: checkTemplate,
