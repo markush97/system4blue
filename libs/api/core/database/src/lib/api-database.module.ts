@@ -20,7 +20,7 @@ import { StorageContainerEntity } from '@system4blue/api/storage';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: 'localhost',
+      host: 'mariadb',
       port: 3306,
       username: 'systemblue',
       password: 'systemblue',
