@@ -2,6 +2,7 @@
     "vsicons.presets.nestjs": true,
     "conventionalCommits.scopes": [
         "dependencies",
-        "api"
+        "api",
+        "admin"
     ]
 }

@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  admin:
+    container_name: "system4Blue-admin"
+    build:
+      context: ./
+      dockerfile: ./apps/admin/Dockerfile
+    image: system4blue/admin
+    depends_on:
+      - api
+    ports:
+      - 80:80
+
   api:
     container_name: "system4Blue-api"
     build:
@@ -8,7 +19,7 @@ services:
       dockerfile: ./apps/api/Dockerfile
     image: system4blue/api
     environment:
-      API_URL: "http://system4.blue:3333/"
+      API_URL: "http://system4.blue/"
     ports:
       - 3333:3333
     networks:
