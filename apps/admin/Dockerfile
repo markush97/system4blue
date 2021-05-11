@@ -35,7 +35,7 @@ ENV APP_PORT=${APP_PORT}
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=builder /usr/src/app/dist/admin/out/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/apps/admin /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE ${APP_PORT}
