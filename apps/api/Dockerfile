@@ -44,6 +44,9 @@ COPY --chown=node:node --from=development ./usr/src/app/dist/apps/api/package*.j
 
 RUN npm install --only=production
 
+# TODO: Find a way to prevent this hotfix for not having mysql2 in generated package.json
+RUN npm install mysql2 --save
+
 # COPY --chown=node:node . ./
 COPY --chown=node:node --from=development /usr/src/app/dist/apps/api ./dist
 
