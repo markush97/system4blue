@@ -91,7 +91,7 @@ export class ItemGroupFormComponent implements OnInit {
         timeRange: undefined,
       });
     } else {
-      await this.itemService.updateItemGroup(this.itemGroup.id, {
+      await this.itemService.updateItemGroup(this.itemGroup.id ?? '', {
         ...this.itemGroupForm.value,
         defaultLifespan:
           this.itemGroupForm.controls['defaultLifespan'].value *

@@ -62,7 +62,7 @@ export class AdminStorageFormComponent implements OnInit {
 
       await this.storageService.updateContainer(
         containerData,
-        this.container.id
+        this.container.id ?? ''
       );
     }
   }

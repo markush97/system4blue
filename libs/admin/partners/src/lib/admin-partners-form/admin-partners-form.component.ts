@@ -51,7 +51,7 @@ export class AdminPartnersFormComponent implements OnInit {
       await this.partnerService.createPartner(this.partnerForm.value);
     } else {
       await this.partnerService.updatePartner(
-        this.partner.id,
+        this.partner.id ?? '',
         this.partnerForm.value
       );
     }

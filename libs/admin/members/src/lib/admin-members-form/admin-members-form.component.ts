@@ -51,7 +51,7 @@ export class AdminMembersFormComponent implements OnInit {
       await this.memberService.createMember(this.memberForm.value);
     } else {
       await this.memberService.updateMember(
-        this.member.id,
+        this.member.id ?? '',
         this.memberForm.value
       );
     }

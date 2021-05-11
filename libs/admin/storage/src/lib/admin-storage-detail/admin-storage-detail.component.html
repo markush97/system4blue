@@ -41,7 +41,7 @@
       <div class="p-mb-4 p-ml-2">
         <b>Lagertyp:  </b>
         <i [class]="storageService.getContainerIcon(container.type)"></i>
-        {{ types[container.type] }}
+        {{ types[container.type || 0] }}
       </div>
       <div class="p-mb-2">
         <p-fieldset *ngIf="container.description" legend="Beschreibung">

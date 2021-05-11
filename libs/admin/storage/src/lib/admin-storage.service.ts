@@ -153,7 +153,7 @@ export class AdminStorageService {
     };
   };
 
-  getContainerIcon = (storageType: StorageType): string => {
+  getContainerIcon = (storageType?: StorageType): string => {
     switch (storageType) {
       case StorageType.BOX:
         return 'pi pi-inbox';

@@ -81,7 +81,7 @@ export class CheckRunFormComponent implements OnInit {
       const runData: CheckRun = this.run;
       Object.assign(runData, this.runForm.value);
 
-      await this.checkRunService.updateCheckRun(runData, this.run.id);
+      await this.checkRunService.updateCheckRun(runData, this.run.id ?? '');
     }
   }
 
@@ -110,6 +110,7 @@ export class CheckRunFormComponent implements OnInit {
   }
 
   toggleItem(item: Item) {
+    item.id ??= '';
     const check = this.checks[item.id];
 
     if (check && check.enabled) {
@@ -120,6 +121,7 @@ export class CheckRunFormComponent implements OnInit {
   }
 
   toggleCheckMark(value: boolean, item: Item, check: string) {
+    item.id ??= '';
     if (this.checks[item.id]) {
       const ind1 = this.checks[item.id].failedChecks.indexOf(check);
       if (ind1 >= 0) this.checks[item.id].failedChecks.splice(ind1, 1);

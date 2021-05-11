@@ -40,7 +40,7 @@ export class AdminChecksTemplateFormComponent implements OnInit {
 
       await this.templateService.updateTemplate(
         templateData,
-        this.template.id
+        this.template.id ?? ''
       );
     }
   }

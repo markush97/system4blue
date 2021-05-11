@@ -45,7 +45,7 @@ export class AdminStorageDetailComponent {
   }
 
   addSubContainer() {
-    this.storageService.addContainer(this.container.id);
+    this.storageService.addContainer(this.container.id ?? '');
   }
 
   updateContainer() {

@@ -118,7 +118,7 @@ export class ItemFormComponent implements OnInit {
       const item: Item = this.itemForm.value;
       Object.assign(item, this.item);
 
-      await this.itemService.updateItem(this.item.id, item);
+      await this.itemService.updateItem(this.item.id ?? '', item);
     }
   }
 

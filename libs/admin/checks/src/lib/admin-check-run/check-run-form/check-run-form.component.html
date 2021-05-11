@@ -71,7 +71,7 @@
         <p-checkbox (click)="toggleItem(item)"></p-checkbox>
         <td>{{ item.name }}</td>
         <td>{{ item.externalId }}</td>
-        <td *ngFor="let check of selectedTemplate.checks"><p-triStateCheckbox (onChange)="toggleCheckMark($event.value, item, check)" [disabled]="!checks[item.id]?.enabled"></p-triStateCheckbox></td>
+        <td *ngFor="let check of selectedTemplate.checks"><p-triStateCheckbox (onChange)="toggleCheckMark($event.value, item, check)" [disabled]="!checks[item.id || '']?.enabled"></p-triStateCheckbox></td>
       </tr>
     </ng-container>
     </table>
